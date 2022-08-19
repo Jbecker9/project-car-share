@@ -1,0 +1,22 @@
+.NoUser-div {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(161, 161, 161);
+  }
+  
+  .NoUser-buttonDiv {
+    width: 50%;
+    height: 30%;
+    border-style: outset;
+    text-align: center;
+    background-color: white;
+  }
+
+  .NoUser-button{
+    float: right;
+  }
