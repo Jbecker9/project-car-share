@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../styles/App.css';
 // import LogInSignUpPage from './LogInSignUpPage';
-import UserFound from './UserFound';
 import LogIn from './LogIn';
+import UserFoundRoutes from './UserFoundRoutes';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -18,7 +18,7 @@ function App() {
   }, [])
 
   if (user) {
-    return <UserFound setUser={setUser}/>
+    return <UserFoundRoutes setUser={setUser}/>
   } else {
     return <LogIn setUser={setUser} user={user}/>
   }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../styles/Login.css'
 
-function LogInForm({ setUser, setSignUpClick }){
+function LogInForm({ setUser, setSignUpClick, setShowUserCreatedMessage, showUserCreatedMessage }){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [logInError, setLogInError] = useState(null)
@@ -23,14 +23,16 @@ function LogInForm({ setUser, setSignUpClick }){
         if(user.errors){
             setLogInError(user.errors)
         } else {
-            setUser(user)
             setLogInError(null)
+            setShowUserCreatedMessage(false)
+            setUser(user)
         }
     }
 
     return(
         <div>
             <h1 className="LogIn-h1"> Login </h1>
+            { showUserCreatedMessage ? <h3 className="UserCreated-h3"> User Created! </h3> : null }
             { logInError ? <h3 className="LogIn-h3">{logInError}</h3> : null }
             <form onSubmit={(e) => handleLogInSubmit(e)}>
                 <input 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/SignUpForm.css"
 
-function SignUpForm({ setSignUpClick }){
+function SignUpForm({ setSignUpClick, setShowUserCreatedMessage }){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -30,13 +30,14 @@ function SignUpForm({ setSignUpClick }){
         } else {
             setSignUpErrors(null)
             setSignUpClick(false)
+            setShowUserCreatedMessage(true)
         }
     }
 
     
 
     return(
-        <div>
+        <div className="SignUpForm-div">
             <button className="SignUp-backToLoginButton" onClick={() => setSignUpClick(false)}> X </button>
             <h1 className="SignUp-h1"> Sign Up </h1>
             <form onSubmit={(e) => handleSignUpSubmit(e)} >

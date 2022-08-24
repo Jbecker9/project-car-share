@@ -5,7 +5,7 @@ body {
     background: #34495e;
 }
 
-div {
+.SignUpForm-div {
     width: 300px;
     padding: 40px;
     position: absolute;
@@ -18,7 +18,6 @@ div {
 }
 
 .SignUpForm-input {
-    border: 0;
     background: none;
     display: block;
     margin: 20px auto;
@@ -46,7 +45,6 @@ div {
 }
 
 .SignUp-submitButton {
-    border: 0;
     background: none;
     display: block;
     margin: 20px auto;
@@ -80,4 +78,8 @@ div {
     transition: 0.25s;
     cursor: pointer;
     float: right;
+}
+
+.UserCreated-h3{
+    color: rgb(0, 197, 0)
 }
