@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import '../styles/LogInForm.css'
+import '../styles/Login.css'
 
-function LogInForm({ setUser }){
+function LogInForm({ setUser, setSignUpClick }){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [logInError, setLogInError] = useState(null)
 
     function handleLogInSubmit(e){
         e.preventDefault()
@@ -15,30 +16,40 @@ function LogInForm({ setUser }){
             body: JSON.stringify({ username, password }),
         })
             .then((response) => response.json())
-            .then((user) => setUser(user))
+            .then((user) => handleLogInError(user))
+    }
+
+    function handleLogInError(user){
+        if(user.errors){
+            setLogInError(user.errors)
+        } else {
+            setUser(user)
+            setLogInError(null)
+        }
     }
 
     return(
-        <div className="LogInForm-div">
+        <div>
+            <h1 className="LogIn-h1"> Login </h1>
+            { logInError ? <h3 className="LogIn-h3">{logInError}</h3> : null }
             <form onSubmit={(e) => handleLogInSubmit(e)}>
-                <label>
-                    Username:
-                    <input 
+                <input 
+                    className="LogIn-input" 
                     type = 'text'
                     value = { username }
+                    placeholder="Username..."
                     onChange = { (e) => setUsername(e.target.value) }
-                    />
-                </label>
-                <label>
-                    Password:
-                    <input 
+                />
+                <input 
+                    className="LogIn-input"
                     type = 'password'
                     value = { password }
+                    placeholder="Password..."
                     onChange = { (e) => setPassword(e.target.value) }
-                    />
-                </label>
-                <button type = "submit"> Log In </button>
+                />
+                <button className="LogIn-submitButton" type = "submit"> Log In </button>
             </form>
+            <button className="LogIn-signUpButton" onClick={(e) => setSignUpClick(true)}> Create an Account </button>
         </div>
     )
 }

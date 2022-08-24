@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import "../styles/SignUpForm.css"
 
-function SignUpForm({ renderLogInForm }){
+function SignUpForm({ setSignUpClick }){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [signUpErrors, setSignUpErrors] = useState(null)
 
     function handleSignUpSubmit(e){
         e.preventDefault()
@@ -19,37 +21,45 @@ function SignUpForm({ renderLogInForm }){
             }),
         })
         .then((response) => response.json())
-        .then(renderLogInForm())
+        .then((user) => handleSignUpErrors(user))
+    }
+
+    function handleSignUpErrors(userArg){
+        console.log(userArg.errors)
+        if (userArg.errors){
+            setSignUpErrors(userArg.errors)
+        } else {
+            setSignUpErrors(null)
+        }
     }
 
     return(
         <div>
+            <h1 className="SignUp-h1"> Sign Up </h1>
+            { signUpErrors ? signUpErrors.forEach((errorMessage) => <h3 className="SignUp-h3">{errorMessage}</h3>) : null }
             <form onSubmit={(e) => handleSignUpSubmit(e)} >
-                <label>
-                    Username:
-                    <input 
+                <input 
+                    className="SignUpForm-input"
                     onChange={ (e) => setUsername(e.target.value) }
                     type = "text"
                     value = { username }
-                    />
-                </label>
-                <label>
-                    Password:
-                    <input 
+                    placeholder="Username..."
+                />
+                <input 
+                    className="SignUpForm-input"
                     onChange={ (e) => setPassword(e.target.value) }
                     type = "password"
                     value = { password } 
-                    />
-                </label>
-                <label>
-                    Confirm Password:
-                    <input 
+                    placeholder="Password..."
+                />
+                <input 
+                    className="SignUpForm-input"
                     onChange={ (e) => setPasswordConfirmation(e.target.value) }
                     type = "password"
                     value = {passwordConfirmation}
-                    />
-                </label>
-                <button type = "submit" > Create an Account </button>
+                    placeholder="Confirm Password..."
+                />
+                <button className="SignUp-submitButton" type = "submit" > Create an Account </button>
             </form>
         </div>
     )
