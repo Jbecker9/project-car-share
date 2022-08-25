@@ -5,13 +5,11 @@ function NameSearch(){
 
     return(
         <div>
-            <form>
-                <input 
-                className="NameSearch-searchInput"
-                type="text"
-                placeholder="Search Build by Name..."
-                />
-            </form>
+            <input 
+            className="NameSearch-searchInput"
+            type="text"
+            placeholder="Search Build by Name..."
+            />
         </div>
     )
 }
