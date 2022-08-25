@@ -4,8 +4,7 @@ import CompanySearch from "./CompanySearch";
 import NameSearch from "./NameSearch";
 
 
-function SearchBuilds(){
-    const [makes, setMakes] = useState([])
+function SearchBuilds({ makes }){
     const [isNameFilterActive, setisNameFilterActive] = useState(false)
     const [isCompanyFilterActive, setisCompanyFilterActive] = useState(false)
     const [isEngineFilterActive, setisEngineFilterActive] = useState(false)
@@ -22,7 +21,6 @@ function SearchBuilds(){
         setisEngineFilterActive(false)
         setisNameFilterActive(false)
         setisCompanyFilterActive(true)
-        getMakesData()
     }
 
     function engineFilterButtonActive(e){
@@ -30,12 +28,6 @@ function SearchBuilds(){
         setisEngineFilterActive(true)
         setisNameFilterActive(false)
         setisCompanyFilterActive(false)
-    }
-    
-    function getMakesData(){
-        fetch("/makes")
-            .then((response)=>response.json())
-            .then((companyData)=>setMakes(companyData))
     }
 
     return(

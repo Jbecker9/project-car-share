@@ -1,7 +1,7 @@
 .NavBar-div {
     padding: 5px;
     top: 100%;
-    background: #191919;
+    background: #203f54;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,6 +20,10 @@
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
+}
+
+.NavBar-logOut:hover{
+    color: black
 }
 
 .NavBar-NavLinks {
@@ -51,4 +55,9 @@
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
+}
+
+.NavBar-NavLinks:hover{
+    border-color: #2ecc71;
+    color: #2ecc71;
 }

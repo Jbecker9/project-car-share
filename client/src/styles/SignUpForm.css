@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: #34495e;
+    background: #f7f6f6;
 }
 
 .SignUpForm-div {
@@ -12,7 +12,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #191919;
+    background: #ccdbea;
+    border-style: outset;
     text-align: center;
 
 }
@@ -26,13 +27,13 @@ body {
     padding: 14px 10px;
     width: 200px;
     outline: none;
-    color: white;
+    color: #203f54;
     border-radius: 24px;
     transition: 0.25s;
 }
 
 .SignUp-h1{
-    color: white;
+    color: #203f54;
     text-transform: capitalize;
     font-weight: 500;
 }
@@ -49,11 +50,11 @@ body {
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px outset #2ecc71;
     padding: 14px 40px;
     width: 200px;
     outline: none;
-    color: white;
+    color: #203f54;
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
@@ -71,10 +72,10 @@ body {
     display: block;
     margin: auto;
     text-align: center;
-    border: 2px solid black;
+    border: 2px outset black;
     padding: 10px 20px;
     outline: none;
-    border-radius: 24px;
+    border-radius: 25px;
     transition: 0.25s;
     cursor: pointer;
     float: right;
