@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/SearchBuilds.css"
 import CompanySearch from "./CompanySearch";
+import NameSearch from "./NameSearch";
 
 
 function SearchBuilds(){
@@ -15,12 +16,13 @@ function SearchBuilds(){
         setisEngineFilterActive(false)
         setisNameFilterActive(true)
     }
-
+    
     function companyFilterButtonActive(e){
         e.preventDefault()
         setisEngineFilterActive(false)
         setisNameFilterActive(false)
         setisCompanyFilterActive(true)
+        getMakesData()
     }
 
     function engineFilterButtonActive(e){
@@ -30,11 +32,11 @@ function SearchBuilds(){
         setisCompanyFilterActive(false)
     }
     
-    useEffect(()=>{
+    function getMakesData(){
         fetch("/makes")
             .then((response)=>response.json())
             .then((companyData)=>setMakes(companyData))
-        }, [])
+    }
 
     return(
         <div>
@@ -60,6 +62,7 @@ function SearchBuilds(){
                 </button>
             </div>
             <div className="SearchBuilds-searchDiv">
+            { isNameFilterActive ? <NameSearch /> : null }
             { isCompanyFilterActive ? <CompanySearch makes={makes} /> : null }
             </div>
         </div>

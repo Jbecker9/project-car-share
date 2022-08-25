@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Make.create([
-    {company_name: "Acura", company_image: "https://assets.stickpng.com/images/580b57fcd9996e24bc43c467.png"},
+    {company_name: "Acura", company_image: "https://seeklogo.com/images/A/Acura-logo-466CCD7EC8-seeklogo.com.png"},
     {company_name: "Alfa Romeo", company_image: "https://www.carlogos.org/logo/Alfa-Romeo-logo-2015-1920x1080.png"},
-    {company_name: "Aston Martin", company_image: "https://assets.stickpng.com/images/580b585b2edbce24c47b2c11.png"},
+    {company_name: "Aston Martin", company_image: "https://logos-world.net/wp-content/uploads/2021/03/Aston-Martin-Logo.png"},
     {company_name: "Audi", company_image: "https://seeklogo.com/images/A/Audi-logo-ED84DFE2E3-seeklogo.com.png"},
     {company_name: "Bentley", company_image: "https://cdn.worldvectorlogo.com/logos/bentley.svg"},
     {company_name: "BMW", company_image: "https://seeklogo.com/images/B/bmw-logo-248C3D90E6-seeklogo.com.png"},
