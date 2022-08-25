@@ -23,14 +23,14 @@ function LogInForm({ setUser, setSignUpClick, setShowUserCreatedMessage, showUse
         if(user.errors){
             setLogInError(user.errors)
         } else {
-            setLogInError(null)
+            setLogInError(null)  
             setShowUserCreatedMessage(false)
             setUser(user)
         }
     }
 
     return(
-        <div>
+        <div className="Login-div">
             <h1 className="LogIn-h1"> Login </h1>
             { showUserCreatedMessage ? <h3 className="UserCreated-h3"> User Created! </h3> : null }
             { logInError ? <h3 className="LogIn-h3">{logInError}</h3> : null }

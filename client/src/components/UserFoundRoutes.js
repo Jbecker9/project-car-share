@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom"
 import CreateBuild from "./CreateBuild";
-import FeaturedBuilds from "./FeaturedBuilds";
+import SearchBuilds from "./SearchBuilds"
 import Home from "./Home";
 import NavBar from "./NavBar";
 
@@ -15,7 +15,7 @@ function UserFoundRoutes({ setUser }){
             <div>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/featured' element={<FeaturedBuilds />} />
+                    <Route path='/search' element={<SearchBuilds />} />
                     <Route path='/createbuild' element={<CreateBuild />} />
                 </Routes>
             </div>

@@ -8,7 +8,7 @@ function LogIn({ setUser }){
     const [showUserCreatedMessage, setShowUserCreatedMessage] = useState(false)
 
     return (
-        <div>
+        <div className="Login-div">
             { signUpClick ? <SignUpForm setSignUpClick={setSignUpClick} setShowUserCreatedMessage={setShowUserCreatedMessage} /> : <LogInForm setSignUpClick={setSignUpClick} setUser={setUser} setShowUserCreatedMessage={setShowUserCreatedMessage} showUserCreatedMessage={showUserCreatedMessage} /> }
             <button className="LogIn-signUpButton" onClick={(e) => setSignUpClick(true)}> Create an Account </button>
         </div>

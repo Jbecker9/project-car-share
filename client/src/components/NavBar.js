@@ -28,12 +28,12 @@ function NavBar({ setUser }){
             </ul>
             <ul>
             <NavLink
-                to="/featured"
+                to="/search"
                 className={({ isActive }) => 
                     isActive ? activeLinkStyle : linkStyle
                 }
             >
-                Featured Builds
+                Search Builds
             </NavLink>
             </ul>
             <ul>
