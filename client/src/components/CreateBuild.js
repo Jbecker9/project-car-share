@@ -1,20 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 
 function CreateBuild({ makes }){
+    const [newBuildName, setNewBuildName] = useState("")
+    const [newMake, setNewMake] = useState("")
+    const [newModel, setNewModel] = useState("")
+    const [newYear, setNewYear] = useState("")
+    const [newSpec, setNewSpec] = useState("")
+    const [newEngine, setNewEngine] = useState("")
+    const [newHorsePower, setNewHorsePower] = useState("")
+    const [newBudget, setNewBudget] = useState(0)
+
+    function renderNewBuild(e){
+        e.preventDefault()
+        const newBuildObj = {
+            name: newBuildName,
+            budget: newBudget,
+            make_id: newMake,
+            model: newModel,
+            year: newYear,
+            spec: newSpec,
+            engine: newEngine,
+            horsepower: newHorsePower
+        }
+        fetch("/builds", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newBuildObj)
+        })
+            .then((response) => response.json())
+            .then((newBuildData) => console.log(newBuildData))
+    }
 
     return(
         <div className="CreateBuild-div">
-            <form>
-                <input placeholder="Build Name..."/>
-                <select>
+            <form onSubmit={(e) => renderNewBuild(e)} >
+                Create a New Build
+                <input 
+                onChange={(e) => setNewBuildName(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Build Name..."
+                />
+                <select 
+                onChange={(e) => setNewMake(e.target.value)}
+                className="CreateBuild-input" 
+                >
                     { makes.map((company) => <option key={company.id} value={company.id} >{company.company_name}</option>) }
                 </select>
-                <input placeholder="Model..." />
-                <input placeholder="Year..." />
-                <input placeholder="Spec..." />
-                <input placeholder="Engine..." />
-                <input placeholder="Horsepower..." />
+                <input 
+                onChange={(e) => setNewModel(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Model..." 
+                />
+                <input 
+                onChange={(e) => setNewYear(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Year..." 
+                />
+                <input 
+                onChange={(e) => setNewSpec(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Spec..." 
+                />
+                <input 
+                onChange={(e) => setNewEngine(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Engine..." 
+                />
+                <input 
+                onChange={(e) => setNewHorsePower(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Horsepower..." 
+                />
+                <input 
+                onChange={(e) => setNewBudget(e.target.value)}
+                className="CreateBuild-input"
+                placeholder="Budget..." 
+                />
+                <button className="CreateBuild-submit"> Submit Build </button>
             </form>
         </div>
     )

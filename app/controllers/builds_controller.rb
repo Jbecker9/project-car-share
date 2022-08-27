@@ -9,7 +9,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = find_user
-        new_build = user.builds.create?(build_params)
+        new_build = user.builds.create!(build_params)
         render json: new_build, status: :created
     end
         
@@ -20,7 +20,7 @@ private
     end
 
     def build_params
-        params.permit(:name, :budget, :make_id, :model, :year, :spec, :engine)
+        params.permit(:name, :budget, :make_id, :model, :year, :spec, :engine, :horsepower)
     end
 
     def render_not_found_response(invalid)

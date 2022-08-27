@@ -19,7 +19,7 @@ function UserFoundRoutes({ setUser }){
             <div>
                 <NavBar setUser={setUser}/>
             </div>
-            <div>
+            <div className="UserFoundRoutes-routesDiv">
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />

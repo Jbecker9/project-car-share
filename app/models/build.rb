@@ -1,4 +1,4 @@
 class Build < ApplicationRecord
-    belongs_to :build
+    belongs_to :make
     belongs_to :user
 end
