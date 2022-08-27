@@ -7,12 +7,24 @@ import NavBar from "./NavBar";
 
 function UserFoundRoutes({ setUser }){
     const [makes, setMakes] = useState([])
+    const [builds, setBuilds] = useState([])
 
     useEffect(()=>{
         fetch("/makes")
             .then((response)=>response.json())
             .then((companyData)=>setMakes(companyData))
-        },[])
+    },[])
+
+    useEffect(()=>{
+        fetch("/builds")
+            .then((response)=>response.json())
+            .then((buildsData)=>setBuilds(buildsData))
+    },[])
+
+    function updateBuildsData(newBuild){
+        const newBuildData = [...builds, newBuild]
+        setBuilds(newBuildData)
+    }
 
     return(
         <div>
@@ -23,7 +35,7 @@ function UserFoundRoutes({ setUser }){
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />
-                    <Route path='/createbuild' element={<CreateBuild makes={makes} />} />
+                    <Route path='/createbuild' element={<CreateBuild makes={makes} updateBuildsData={updateBuildsData} />} />
                 </Routes>
             </div>
         </div>

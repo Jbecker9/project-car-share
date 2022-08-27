@@ -8,7 +8,7 @@ function CompanySearch({ makes }){
     return(
         <div className="CompanySearch-div">
             { makes.map((company) =>
-                <CompanySearchCard company={company} key={company.id}/>
+                <CompanySearchCard company={company} key={company.id} makes={makes} />
             ) }    
         </div>
     )

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 
-function CreateBuild({ makes }){
+function CreateBuild({ makes, updateBuildsData }){
     const [newBuildName, setNewBuildName] = useState("")
     const [newMake, setNewMake] = useState("")
     const [newModel, setNewModel] = useState("")
@@ -31,7 +31,7 @@ function CreateBuild({ makes }){
             body: JSON.stringify(newBuildObj)
         })
             .then((response) => response.json())
-            .then((newBuildData) => console.log(newBuildData))
+            .then((newBuildData) => updateBuildsData(newBuildData))
     }
 
     return(
