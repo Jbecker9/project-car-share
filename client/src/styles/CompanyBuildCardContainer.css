@@ -1,0 +1,7 @@
+.CompanyBuildCardContainer-div{
+    position: absolute;
+    bottom: 2px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
