@@ -4,7 +4,7 @@ function CompanyBuildCard({ build }){
 
     return(
         <div className="CompanyBuildCard-div">
-            <h3>{build.name}</h3>
+            <h1>{build.name}</h1>
         </div>
     )
 }
