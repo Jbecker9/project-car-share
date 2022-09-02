@@ -4,7 +4,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
         builds = Build.all
-        render json: builds
+        render json: builds, include: :make
     end
 
     def create
@@ -16,11 +16,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 private
 
     def find_user
+        # byebug?
         User.find_by!(id: session[:user_id])
     end
 
     def build_params
-        params.permit(:name, :budget, :make_id, :model, :year, :spec, :engine, :horsepower)
+        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower )
     end
 
     def render_not_found_response(invalid)

@@ -1,5 +1,6 @@
 import React from "react";
 import CompanyBuildCard from "./CompanyBuildCard";
+import "../styles/CompanyBuildCardContainer.css"
 
 function CompanyBuildCardContainer({ companyBuilds }){
 

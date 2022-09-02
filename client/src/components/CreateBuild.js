@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 
 function CreateBuild({ makes, updateBuildsData }){
-    const [newBuildName, setNewBuildName] = useState("")
-    const [newMake, setNewMake] = useState("")
+    const [newBuildImage, setNewBuildImage] = useState("")
+    const [newMake, setNewMake] = useState("1")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
     const [newSpec, setNewSpec] = useState("")
@@ -14,7 +14,7 @@ function CreateBuild({ makes, updateBuildsData }){
     function renderNewBuild(e){
         e.preventDefault()
         const newBuildObj = {
-            name: newBuildName,
+            build_image: newBuildImage,
             budget: newBudget,
             make_id: newMake,
             model: newModel,
@@ -39,11 +39,12 @@ function CreateBuild({ makes, updateBuildsData }){
             <form onSubmit={(e) => renderNewBuild(e)} >
                 Create a New Build
                 <input 
-                onChange={(e) => setNewBuildName(e.target.value)}
+                onChange={(e) => setNewBuildImage(e.target.value)}
                 className="CreateBuild-input"
-                placeholder="Build Name..."
+                placeholder="Build Image..."
                 />
                 <select 
+                defaultValue={1}
                 onChange={(e) => setNewMake(e.target.value)}
                 className="CreateBuild-input" 
                 >
@@ -61,6 +62,7 @@ function CreateBuild({ makes, updateBuildsData }){
                 />
                 <input 
                 onChange={(e) => setNewSpec(e.target.value)}
+                defaultValue={null}
                 className="CreateBuild-input"
                 placeholder="Spec..." 
                 />

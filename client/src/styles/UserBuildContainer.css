@@ -1,4 +1,4 @@
-.CompanySearchCard-card {
+.UserBuildContainer-div {
     box-shadow: 0 4px 8px 0 rgb(51, 51, 51);
     padding: 40px;
     background-color: #c3c7d2;
@@ -9,9 +9,7 @@
     align-items: center;
 }
 
-.CompanySearchCard-cardImage{
-    width: 75%;
-    height: 100%;
-    position: relative;
-    /* border-radius: 5px; */
+.UserBuildContainer-img{
+    width: 100%;
+    border-radius: 5px;
 }

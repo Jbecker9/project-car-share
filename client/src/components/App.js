@@ -18,7 +18,7 @@ function App() {
   }, [])
 
   if (user) {
-    return <UserFoundRoutes setUser={setUser}/>
+    return <UserFoundRoutes user={user} setUser={setUser}/>
   } else {
     return <LogIn setUser={setUser} user={user}/>
   }

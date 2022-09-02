@@ -2,6 +2,7 @@ Rails.application.routes.draw do
  
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
+  delete "/delete_user/:user_id", to: "users#destroy"
 
 
   post "/login", to: "sessions#create"

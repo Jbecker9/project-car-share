@@ -1,9 +1,6 @@
 .CompanyBuildCardContainer-div{
-    position: absolute;
-    bottom: 2px;
-    display: flex;
-    padding: 2px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    border-top: 2px solid black;
+    display: grid;
+    margin: 5px;
+    padding: 40px;
+
 }

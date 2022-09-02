@@ -13,6 +13,14 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def destroy
+        user = User.find_by!(id: params.permit(:user_id))
+        user.builds.destroy
+        user.destroy
+        session.delete :user_id
+    end
+
+
 private
 
     def user_params

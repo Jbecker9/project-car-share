@@ -1,4 +1,15 @@
-.CompanyBuildCard-div{
-    flex: 0 0 auto;
-    border-top: 2px black;
+.CompanyBuildCard-div {
+    bottom: 0;
+    margin: 5px;
+    background-color: #c3c7d2;
+    border-style: outset;
+    border-color: black;
+    border-radius: 5px;
+    width: 100%;
+    color: black;
+}
+
+.CompanyBuildCard-image{
+    width: 100%;
+    position: relative;
 }

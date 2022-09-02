@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2022_08_25_000558) do
   enable_extension "plpgsql"
 
   create_table "builds", force: :cascade do |t|
-    t.string "name"
+    t.string "build_image"
     t.integer "budget"
     t.integer "make_id"
     t.string "model"

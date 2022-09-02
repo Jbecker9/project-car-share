@@ -5,7 +5,7 @@ import SearchBuilds from "./SearchBuilds"
 import Home from "./Home";
 import NavBar from "./NavBar";
 
-function UserFoundRoutes({ setUser }){
+function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
     const [builds, setBuilds] = useState([])
 
@@ -33,7 +33,7 @@ function UserFoundRoutes({ setUser }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route path='/' element={<Home user={user} makes={makes} />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />
                     <Route path='/createbuild' element={<CreateBuild makes={makes} updateBuildsData={updateBuildsData} />} />
                 </Routes>

@@ -1,10 +1,11 @@
 import React from "react";
+import UserBuildContainer from "./UserBuildContainer";
 
-function Home(){
+function Home({ user, makes }){
 
     return(
         <div>
-            Home
+            { user.builds.map((build) => <UserBuildContainer build={build} key={build.id} makes={makes} /> )}
         </div>
     )
 }
