@@ -1,13 +1,14 @@
 import React from "react";
 import "../styles/UserBuildContainer.css"
+import UserBuildCard from "./UserBuildCard";
 
-function UserBuildContainer({ build, makes }){
+function UserBuildContainer({ make }){
+    console.log(make)
 
     return(
-        <div className="UserBuildContainer-div" onClick={()=>console.log(build)} >
-            <h1>{build.make.company_name}</h1>
-            <h2>{build.year} {build.model} {build.spec} </h2>
-            <img src={build.build_image} alt="User Vehicle" className="UserBuildContainer-img"/>
+        <div className="UserBuildContainer-div" >
+            <h1>{make.company_name}</h1>
+            { make.builds.map((build) => <UserBuildCard key={build.id} build={build} />) }
         </div>
     )
 }
