@@ -6,7 +6,7 @@ function CreateBuild({ makes, updateBuildsData }){
     const [newMake, setNewMake] = useState("1")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
-    const [newSpec, setNewSpec] = useState("")
+    const [newSpec, setNewSpec] = useState("Base")
     const [newEngine, setNewEngine] = useState("")
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)

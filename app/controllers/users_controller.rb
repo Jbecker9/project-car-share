@@ -20,6 +20,11 @@ class UsersController < ApplicationController
         session.delete :user_id
     end
 
+    def index
+        users = User.all
+        render json: users
+    end
+
 
 private
 
