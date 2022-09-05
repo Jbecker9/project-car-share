@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "../styles/CompanySearchCard.css"
 import CompanyBuildCardContainer from "./CompanyBuildCardContainer";
 
-function CompanySearchCard({ company }){
+function CompanySearchCard({ company, builds }){
     const [buildClick, setBuildClick] = useState(false)
     const [companyBuilds, setCompanyBuilds] = useState([])
     // console.log(makes)
 
     function renderCompany(e){
         e.preventDefault()
-        setCompanyBuilds(company.builds)
+        const companyBuildArray = builds.filter((build) => build.make.id === company.id)
+        setCompanyBuilds(companyBuildArray)
         setBuildClick(!buildClick)
     }
 

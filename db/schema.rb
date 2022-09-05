@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_08_25_000558) do
     t.integer "year"
     t.string "spec"
     t.string "engine"
-    t.string "user_id"
+    t.integer "user_id"
     t.integer "horsepower"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -8,7 +8,7 @@ class CreateBuilds < ActiveRecord::Migration[6.1]
       t.integer :year
       t.string :spec
       t.string :engine
-      t.string :user_id
+      t.integer :user_id
       t.integer :horsepower
 
       t.timestamps
