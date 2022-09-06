@@ -9,7 +9,6 @@ function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
     const [builds, setBuilds] = useState([])
     const [userMakes, setUserMakes] = useState(user.makes)
-    console.log(userMakes)
 
 
     useEffect(()=>{
@@ -36,6 +35,10 @@ function UserFoundRoutes({ setUser, user }){
             setUserMakes(newUserMakeArray)
         } else {
         }
+    }
+
+    function newUserBuildCallBack(newStateArg, newBuildArg){
+        newStateArg(newBuildArg)
     }
 
     return(

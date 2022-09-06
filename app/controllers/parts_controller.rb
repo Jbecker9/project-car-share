@@ -1,3 +1,0 @@
-class PartsController < ApplicationController
-
-end

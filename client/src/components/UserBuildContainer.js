@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/UserBuildContainer.css"
 import UserBuildCard from "./UserBuildCard";
 
-function UserBuildContainer({ make, builds }){
-    const buildByMake = builds.filter((build)=> build.make.id === make.id)
+function UserBuildContainer({ make }){
+    const [userBuildsByMake, setUserBuildsByMake] = useState(make.builds)
 
     return(
         <div className="UserBuildContainer-div" >
             <h1>{make.company_name}</h1>
-            { buildByMake.map((build) => <UserBuildCard key={build.id} build={build} />) }
+            { userBuildsByMake.map((build) => <UserBuildCard key={build.id} build={build} />) }
         </div>
     )
 }
