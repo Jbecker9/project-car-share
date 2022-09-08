@@ -7,9 +7,7 @@ import NavBar from "./NavBar";
 
 function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
-    const [builds, setBuilds] = useState([])
     const [userMakes, setUserMakes] = useState(user.makes)
-
 
     useEffect(()=>{
         fetch("/makes")
@@ -17,29 +15,13 @@ function UserFoundRoutes({ setUser, user }){
             .then((companyData)=>setMakes(companyData))
     },[])
 
-    useEffect(()=>{
-        fetch("/builds")
-            .then((response)=>response.json())
-            .then((buildsData)=>setBuilds(buildsData))
-    },[])
-
-    function updateBuildsData(newBuild){
-        const newBuildData = [...builds, newBuild]
-        setBuilds(newBuildData)
-        renderNewMake(newBuild)
-    }
-
-    function renderNewMake(newBuild){
+    function updateUserBuildsData(newBuild){
         if (!userMakes.includes(newBuild.make)){
             const newUserMakeArray = [...userMakes, newBuild.make]
             setUserMakes(newUserMakeArray)
-        } else {
-        }
+        } else {}
     }
 
-    function newUserBuildCallBack(newStateArg, newBuildArg){
-        newStateArg(newBuildArg)
-    }
 
     return(
         <div>
@@ -48,9 +30,9 @@ function UserFoundRoutes({ setUser, user }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home builds={builds} userMakes={userMakes} />} />
-                    <Route path='/search' element={<SearchBuilds makes={makes} builds={builds} />} />
-                    <Route path='/createbuild' element={<CreateBuild makes={makes} updateBuildsData={updateBuildsData} />} />
+                    <Route path='/' element={<Home userMakes={userMakes} />} />
+                    <Route path='/search' element={<SearchBuilds makes={makes} />} />
+                    <Route path='/createbuild' element={<CreateBuild makes={makes} />} />
                 </Routes>
             </div>
         </div>
