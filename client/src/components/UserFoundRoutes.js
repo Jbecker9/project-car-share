@@ -19,9 +19,17 @@ function UserFoundRoutes({ setUser, user }){
     function updateUserBuildsData(newBuild){
         // setNewBuildGlobal(newBuild)
         if (userMakes.find((make) => make.id === newBuild.make_id)){
-            console.log("hello")
+            let noNewMakeArray = userMakes.filter((make) => make.id !== newBuild.make_id)
+            const updatedMake = userMakes.filter((make) => make.id === newBuild.make_id)
+            updatedMake[0].builds = [...updatedMake[0].builds, newBuild]
+            noNewMakeArray = [...noNewMakeArray, updatedMake[0]]
+            noNewMakeArray.sort()
+            setUserMakes(noNewMakeArray.sort((a,b) => a.id -b.id))
         } else {
-            console.log(newBuild)
+            const findNewUserMakeObj = makes.find((make) => make.id === newBuild.make_id)
+            findNewUserMakeObj.builds = [newBuild]
+            const newUserMakeArray = [...userMakes, findNewUserMakeObj]
+            console.log(newUserMakeArray)
         }
     }
 

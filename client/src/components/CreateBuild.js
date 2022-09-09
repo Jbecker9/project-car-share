@@ -3,22 +3,22 @@ import "../styles/CreateBuild.css"
 
 function CreateBuild({ makes, updateUserBuildsData }){
     const [newBuildImage, setNewBuildImage] = useState("")
-    const [newMake, setNewMake] = useState("1")
+    const [newMake, setNewMake] = useState(1)
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
     const [newSpec, setNewSpec] = useState("Base")
     const [newEngine, setNewEngine] = useState("")
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)
-
+ 
     function renderNewBuild(e){
         e.preventDefault()
         const newBuildObj = {
             build_image: newBuildImage,
-            budget: newBudget,
-            make_id: newMake,
+            budget: parseInt(newBudget),
+            make_id: parseInt(newMake),
             model: newModel,
-            year: newYear,
+            year: parseInt(newYear),
             spec: newSpec,
             engine: newEngine,
             horsepower: newHorsePower
