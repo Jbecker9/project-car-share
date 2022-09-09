@@ -18,12 +18,10 @@ function UserFoundRoutes({ setUser, user }){
 
     function updateUserBuildsData(newBuild){
         // setNewBuildGlobal(newBuild)
-        if (!userMakes.includes(newBuild.make)){
-            const newUserMakeArray = [...userMakes, newBuild.make]
-            setUserMakes(newUserMakeArray)
+        if (userMakes.find((make) => make.id === newBuild.make_id)){
+            console.log("hello")
         } else {
-            const newBuildByUserMake = userMakes.filter((comp)=> comp.id === newBuild.make_id)
-            console.log(newBuildByUserMake)
+            console.log(newBuild)
         }
     }
 

@@ -32,7 +32,7 @@ function CreateBuild({ makes, updateUserBuildsData }){
         // })
         //     .then((response) => response.json())
         //     .then((newBuildData) => updateUserBuildsData(newBuildData))
-        // updateUserBuildsData(newBuildObj)
+        updateUserBuildsData(newBuildObj)
     }
 
     return(
