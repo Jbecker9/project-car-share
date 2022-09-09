@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 
-function CreateBuild({ makes }){
+function CreateBuild({ makes, updateUserBuildsData }){
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newMake, setNewMake] = useState("1")
     const [newModel, setNewModel] = useState("")
@@ -23,15 +23,16 @@ function CreateBuild({ makes }){
             engine: newEngine,
             horsepower: newHorsePower
         }
-        fetch("/builds", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newBuildObj)
-        })
-            .then((response) => response.json())
-            .then((newBuildData) => console.log(newBuildData))
+        // fetch("/builds", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify(newBuildObj)
+        // })
+        //     .then((response) => response.json())
+        //     .then((newBuildData) => updateUserBuildsData(newBuildData))
+        // updateUserBuildsData(newBuildObj)
     }
 
     return(

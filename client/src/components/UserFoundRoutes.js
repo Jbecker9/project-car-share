@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Routes, Route } from "react-router-dom"
 import CreateBuild from "./CreateBuild";
 import SearchBuilds from "./SearchBuilds"
@@ -8,6 +8,7 @@ import NavBar from "./NavBar";
 function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
     const [userMakes, setUserMakes] = useState(user.makes)
+    const newBuildMake = useRef(null)
 
     useEffect(()=>{
         fetch("/makes")
@@ -16,10 +17,14 @@ function UserFoundRoutes({ setUser, user }){
     },[])
 
     function updateUserBuildsData(newBuild){
+        // setNewBuildGlobal(newBuild)
         if (!userMakes.includes(newBuild.make)){
             const newUserMakeArray = [...userMakes, newBuild.make]
             setUserMakes(newUserMakeArray)
-        } else {}
+        } else {
+            const newBuildByUserMake = userMakes.filter((comp)=> comp.id === newBuild.make_id)
+            console.log(newBuildByUserMake)
+        }
     }
 
 
@@ -32,7 +37,7 @@ function UserFoundRoutes({ setUser, user }){
                 <Routes>
                     <Route path='/' element={<Home userMakes={userMakes} />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />
-                    <Route path='/createbuild' element={<CreateBuild makes={makes} />} />
+                    <Route path='/createbuild' element={<CreateBuild makes={makes} updateUserBuildsData={updateUserBuildsData} />} />
                 </Routes>
             </div>
         </div>

@@ -2,12 +2,12 @@ import React from "react";
 import "../styles/CompanySearch.css"
 import CompanySearchCard from "./CompanySearchCard";
 
-function CompanySearch({ makes, builds }){
+function CompanySearch({ makes }){
 
     return(
         <div className="CompanySearch-div">
             { makes.map((company) =>
-                <CompanySearchCard builds={builds} company={company} key={company.id} makes={makes} />
+                <CompanySearchCard company={company} key={company.id} />
             ) }
         </div>
     )

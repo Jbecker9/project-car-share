@@ -5,5 +5,4 @@ class MakesController < ApplicationController
         render json: makes
     end
 
-
 end
