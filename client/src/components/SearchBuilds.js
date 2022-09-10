@@ -3,12 +3,12 @@ import "../styles/SearchBuilds.css"
 import CompanySearch from "./CompanySearch";
 
 
-function SearchBuilds({ makes, builds }){
+function SearchBuilds({ makes }){
 
     return(
         <div>
             <div className="SearchBuilds-searchDiv">
-            <CompanySearch makes={makes} builds={builds} />
+            <CompanySearch makes={makes} />
             </div>
         </div>
     )

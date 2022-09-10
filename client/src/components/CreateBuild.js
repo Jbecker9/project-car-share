@@ -23,16 +23,16 @@ function CreateBuild({ makes, updateUserBuildsData }){
             engine: newEngine,
             horsepower: newHorsePower
         }
-        // fetch("/builds", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify(newBuildObj)
-        // })
-        //     .then((response) => response.json())
-        //     .then((newBuildData) => updateUserBuildsData(newBuildData))
-        updateUserBuildsData(newBuildObj)
+        fetch("/builds", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newBuildObj)
+        })
+            .then((response) => response.json())
+            .then((newBuildData) => updateUserBuildsData(newBuildData))
+        // updateUserBuildsData(newBuildObj)
     }
 
     return(
