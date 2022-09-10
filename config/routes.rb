@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "/builds", to: "builds#index"
   post "/builds", to: "builds#create"
+  patch "/builds/:id", to: "builds#update"
   delete "/builds/:id", to: "builds#destroy"
   
   # Routing logic: fallback requests for React Router.

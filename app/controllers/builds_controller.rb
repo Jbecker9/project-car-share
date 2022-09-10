@@ -13,10 +13,16 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: new_build, status: :created
     end
 
+    def update
+        update_build = find_build
+        update_build.update!(build_params)
+        render json: update_build
+    end
+
     def destroy
-        user = find_user
-        deleted_build = user.builds.find_by!(id: params[:id])
+        deleted_build = find_builds
         deleted_build.destroy
+        head :no_content
     end
         
 private
@@ -24,6 +30,11 @@ private
     def find_user
         # byebug?
         User.find_by!(id: session[:user_id])
+    end
+
+    def find_build
+        user = find_user
+        user.builds.find_by!(id: params[:id])
     end
 
     def build_params

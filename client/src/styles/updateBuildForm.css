@@ -1,0 +1,13 @@
+.UpdateBuildForm-div{
+    margin: 5px;
+    background-color: #c3c7d2;
+    border-style: outset;
+    border-color: black;
+    border-radius: 5px;
+    width: 100%;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 48.5%;
+    transform: translate(-50%, -50%);
+}

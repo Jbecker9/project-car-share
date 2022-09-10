@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/UserBuildCard.css"
+import UpdateBuildForm from "./UpdateBuildForm";
 
-function UserBuildCard({ build, removeBuild }){
+function UserBuildCard({ build, removeBuild, makes, renderUpdateBuild }){
+    const [updateFormClick, setUpdateFormClick] = useState(false)
 
     function deleteBuild(e){
         e.preventDefault()
@@ -18,7 +20,9 @@ function UserBuildCard({ build, removeBuild }){
             <h3>Budget: ${build.budget} </h3>
             <h3> {build.horsepower}hp {build.engine} </h3>
             <img src={build.build_image} alt="User Vehicle" className="UserBuildCard-img" />
-            <button onClick={(e)=>deleteBuild(e)} className="CompanyBuildCard-button"> Delete Build </button>
+            <button onClick={()=>setUpdateFormClick(!updateFormClick)} className="UserBuildCard-updateButton"> Update Build </button>
+            <button onClick={(e)=>deleteBuild(e)} className="UserBuildCard-deleteButton"> Delete Build </button>
+            { updateFormClick ? <UpdateBuildForm renderUpdateBuild={renderUpdateBuild} makes={makes} build={build} /> : null }
         </div>
     )
 }

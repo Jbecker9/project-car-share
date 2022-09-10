@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 
-function CreateBuild({ makes, updateUserBuildsData }){
+function CreateBuild({ makes, updateNewUserBuildsData }){
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newMake, setNewMake] = useState(1)
     const [newModel, setNewModel] = useState("")
@@ -34,7 +34,7 @@ function CreateBuild({ makes, updateUserBuildsData }){
         })
             .then((response) => response.json())
             .then((newBuildData) =>{ 
-                updateUserBuildsData(newBuildData);
+                updateNewUserBuildsData(newBuildData);
                 setNewBuildObject(newBuildObj)
             })
         // updateUserBuildsData(newBuildObj)
