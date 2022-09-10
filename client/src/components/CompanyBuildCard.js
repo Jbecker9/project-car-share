@@ -7,7 +7,8 @@ function CompanyBuildCard({ build }){
         <div className="CompanyBuildCard-div" onClick={()=>console.log(build)} >
             <img className="CompanyBuildCard-image" src={build.build_image} alt="User Vehicle" />
             <h2>{build.year} {build.model} {build.spec}</h2>
-            <h3>{build.horsepower}hp ${build.budget}</h3>
+            <h3>{build.horsepower}hp </h3>
+            <h3>Budget: ${build.budget}</h3>
         </div>
     )
 }

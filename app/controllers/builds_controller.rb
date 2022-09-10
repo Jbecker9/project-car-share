@@ -12,6 +12,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         new_build = user.builds.create!(build_params)
         render json: new_build, status: :created
     end
+
+    def destroy
+        user = find_user
+        deleted_build = user.builds.find_by!(id: params[:id])
+        deleted_build.destroy
+    end
         
 private
 

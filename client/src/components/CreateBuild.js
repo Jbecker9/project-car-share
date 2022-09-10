@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
+import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 
 function CreateBuild({ makes, updateUserBuildsData }){
     const [newBuildImage, setNewBuildImage] = useState("")
@@ -10,6 +11,7 @@ function CreateBuild({ makes, updateUserBuildsData }){
     const [newEngine, setNewEngine] = useState("")
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)
+    const [newBuildObject, setNewBuildObject] = useState(null)
  
     function renderNewBuild(e){
         e.preventDefault()
@@ -31,12 +33,16 @@ function CreateBuild({ makes, updateUserBuildsData }){
             body: JSON.stringify(newBuildObj)
         })
             .then((response) => response.json())
-            .then((newBuildData) => updateUserBuildsData(newBuildData))
+            .then((newBuildData) =>{ 
+                updateUserBuildsData(newBuildData);
+                setNewBuildObject(newBuildObj)
+            })
         // updateUserBuildsData(newBuildObj)
     }
 
     return(
         <div className="CreateBuild-div">
+            { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
             <form onSubmit={(e) => renderNewBuild(e)} >
                 Create a New Build
                 <input 
