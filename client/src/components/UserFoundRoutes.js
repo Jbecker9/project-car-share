@@ -14,7 +14,6 @@ function UserFoundRoutes({ setUser, user }){
             .then((response)=>response.json())
             .then((companyData)=>setMakes(companyData))
     },[])
-    console.log(user)
 
     function updateUserBuildsData(newBuild){
         // setNewBuildGlobal(newBuild)

@@ -1,5 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :image_url, :builds
-  has_many :builds
+  attributes :id, :username, :image_url
   has_many :makes
 end
