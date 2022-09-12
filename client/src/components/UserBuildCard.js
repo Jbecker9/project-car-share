@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/UserBuildCard.css"
 import UpdateBuildForm from "./UpdateBuildForm";
 
-function UserBuildCard({ build, removeBuild, makes, renderUpdateBuild }){
+function UserBuildCard({ build, makes, renderUpdateBuild }){
     const [updateFormClick, setUpdateFormClick] = useState(false)
 
     function deleteBuild(e){
@@ -10,8 +10,6 @@ function UserBuildCard({ build, removeBuild, makes, renderUpdateBuild }){
         fetch(`/builds/${build.id}`, {
             method: "DELETE"
         })
-        removeBuild(build)
-
     }
 
     return(
@@ -22,7 +20,7 @@ function UserBuildCard({ build, removeBuild, makes, renderUpdateBuild }){
             <img src={build.build_image} alt="User Vehicle" className="UserBuildCard-img" />
             <button onClick={()=>setUpdateFormClick(!updateFormClick)} className="UserBuildCard-updateButton"> Update Build </button>
             <button onClick={(e)=>deleteBuild(e)} className="UserBuildCard-deleteButton"> Delete Build </button>
-            { updateFormClick ? <UpdateBuildForm renderUpdateBuild={renderUpdateBuild} makes={makes} build={build} /> : null }
+            { updateFormClick ? <UpdateBuildForm renderUpdateBuild={renderUpdateBuild} makes={makes} build={build} setUpdateFormClick={setUpdateFormClick} /> : null }
         </div>
     )
 }

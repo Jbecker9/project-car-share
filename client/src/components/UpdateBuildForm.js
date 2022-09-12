@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/updateBuildForm.css"
 
-function UpdateBuildForm({ build, makes, renderUpdateBuild }){
+function UpdateBuildForm({ build, makes, renderUpdateBuild, setUpdateFormClick }){
     const [updateBuildImage, setUpdateBuildImage] = useState(build.build_image)
     const [updateBuildMake, setUpdateBuildMake] = useState(build.make_id)
     const [updateBuildModel, setUpdateBuildModel] = useState(build.model)
@@ -10,7 +10,6 @@ function UpdateBuildForm({ build, makes, renderUpdateBuild }){
     const [updateBuildEngine, setUpdateBuildEngine] = useState(build.engine)
     const [updateBuildHorsepower, setUpdateBuildHorsepower] = useState(build.horsepower)
     const [updateBuildBudget, setUpdateBuildBudget] = useState(build.budget)
-    const [updatedBuildState, setUpdatedBuildState] = useState(build)
     
     function addUpdateBuildData(e){
         e.preventDefault()
@@ -32,9 +31,9 @@ function UpdateBuildForm({ build, makes, renderUpdateBuild }){
             body: JSON.stringify(updateBuildObj)
         }).then((response)=>response.json())
             .then((updateBuildData)=>{ 
-                renderUpdateBuild(updateBuildData, updatedBuildState);
-                setUpdatedBuildState(updateBuildObj)})
-        // console.log(updateBuildObj)
+                renderUpdateBuild(updateBuildData);
+                setUpdateFormClick(false)
+            })
     }
 
     return(

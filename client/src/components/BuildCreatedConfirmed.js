@@ -8,7 +8,6 @@ function BuildCreatedConfirmed({ newBuildObject, setNewBuildObject }){
             <h2>{newBuildObject.model} Added!</h2>
             <img alt="new users build" src={newBuildObject.build_image} className="BuildCreatedConfirmed-img" />
             <button onClick={()=>setNewBuildObject(null)} className="BuildCreatedConfirmed-button"> Close </button>
-            <button> Delete Build </button>
         </div>
     )
 }

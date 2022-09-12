@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 
-function CreateBuild({ makes, updateNewUserBuildsData }){
+function CreateBuild({ makes, renderNewBuild }){
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newMake, setNewMake] = useState(1)
     const [newModel, setNewModel] = useState("")
@@ -13,7 +13,7 @@ function CreateBuild({ makes, updateNewUserBuildsData }){
     const [newBudget, setNewBudget] = useState(0)
     const [newBuildObject, setNewBuildObject] = useState(null)
  
-    function renderNewBuild(e){
+    function addNewBuildData(e){
         e.preventDefault()
         const newBuildObj = {
             build_image: newBuildImage,
@@ -34,7 +34,7 @@ function CreateBuild({ makes, updateNewUserBuildsData }){
         })
             .then((response) => response.json())
             .then((newBuildData) =>{ 
-                updateNewUserBuildsData(newBuildData);
+                renderNewBuild(newBuildData);
                 setNewBuildObject(newBuildObj)
             })
         // updateUserBuildsData(newBuildObj)
@@ -43,7 +43,7 @@ function CreateBuild({ makes, updateNewUserBuildsData }){
     return(
         <div className="CreateBuild-div">
             { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
-            <form onSubmit={(e) => renderNewBuild(e)} >
+            <form onSubmit={(e) => addNewBuildData(e)} >
                 Create a New Build
                 <input 
                 onChange={(e) => setNewBuildImage(e.target.value)}
