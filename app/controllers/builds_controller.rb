@@ -20,11 +20,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def destroy
-        byebug
-        deleted_build = find_builds
-        # deleted_build_make = deleted_build.builds
+        # byebug
+        deleted_build = find_build
         deleted_build.destroy
-        head :no_content
+        render json: deleted_build
     end
         
 private

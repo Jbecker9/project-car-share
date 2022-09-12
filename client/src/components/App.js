@@ -27,4 +27,4 @@ function App() {
 export default App;
 
 
-// User.makes to userbuilds (instead of all makes) so makes can rerender state from make_id in newly created build
+// User.makes to userbuilds (instead of all makes) so makes can rerender state from make_id in newly created build, filter user.makes

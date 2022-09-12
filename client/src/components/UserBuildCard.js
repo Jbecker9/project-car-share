@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "../styles/UserBuildCard.css"
 import UpdateBuildForm from "./UpdateBuildForm";
 
-function UserBuildCard({ build, makes, renderUpdateBuild }){
+function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
     const [updateFormClick, setUpdateFormClick] = useState(false)
 
     function deleteBuild(e){
         e.preventDefault()
         fetch(`/builds/${build.id}`, {
             method: "DELETE"
-        })
+        }).then((response)=>response.json())
+            .then((deletedBuildMakeData) => renderRemovedBuild(deletedBuildMakeData))
     }
 
     return(

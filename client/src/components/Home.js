@@ -1,11 +1,11 @@
 import React from "react";
 import UserBuildContainer from "./UserBuildContainer";
 
-function Home({ userMakes, makes, renderUpdateBuild }){
-
+function Home({ userMakes, makes, renderUpdateBuild, renderRemovedBuild}){
+    
     return(
         <div>
-            { userMakes.map((make) => <UserBuildContainer renderUpdateBuild={renderUpdateBuild} makes={makes} make={make} key={make.id} /> )}
+            { userMakes.map((make) => <UserBuildContainer renderRemovedBuild={renderRemovedBuild} renderUpdateBuild={renderUpdateBuild} makes={makes} make={make} key={make.id} /> )}
         </div>
     )
 }
