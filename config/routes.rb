@@ -2,19 +2,15 @@ Rails.application.routes.draw do
  
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
-  delete "/delete_user/:user_id", to: "users#destroy"
-  get "/users", to: "users#index"
-
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  get "/makes", to: "makes#index"
+  resources :makes, only: [:index, :create] do
+    resources :builds, only: [:create, :update]
+  end
 
-  get "/builds", to: "builds#index"
-  post "/builds", to: "builds#create"
-  patch "/builds/:id", to: "builds#update"
-  delete "/builds/:id", to: "builds#destroy"
+  resources :builds, only: [:index, :destroy]
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

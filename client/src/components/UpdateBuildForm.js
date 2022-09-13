@@ -23,7 +23,7 @@ function UpdateBuildForm({ build, makes, renderUpdateBuild, setUpdateFormClick }
             engine: updateBuildEngine,
             horsepower: updateBuildHorsepower
         }
-        fetch(`/builds/${build.id}`,{
+        fetch(`makes/${build.make_id}/builds/${build.id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

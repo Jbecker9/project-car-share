@@ -14,7 +14,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def update
-        update_build = find_build
+        # byebug
+        user = find_user
+        make = user.makes.find_by(id: params.permit[:make_id])
+        update_build = make.builds.find_by(id: params.permit[:id])
         update_build.update!(build_params)
         render json: update_build
     end
@@ -39,7 +42,7 @@ private
     end
 
     def build_params
-        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower )
+        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower)
     end
 
     def render_not_found_response(invalid)

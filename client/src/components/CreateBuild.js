@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
+import NewMakeForm from "./NewMakeForm";
 
 function CreateBuild({ makes, renderNewBuild }){
     const [newBuildImage, setNewBuildImage] = useState("")
@@ -12,6 +13,7 @@ function CreateBuild({ makes, renderNewBuild }){
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)
     const [newBuildObject, setNewBuildObject] = useState(null)
+    const [addNewMakeClick, setAddNewMakeClick] = useState(null)
  
     function addNewBuildData(e){
         e.preventDefault()
@@ -25,7 +27,7 @@ function CreateBuild({ makes, renderNewBuild }){
             engine: newEngine,
             horsepower: newHorsePower
         }
-        fetch("/builds", {
+        fetch(`/makes/${newMake}/builds`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -37,7 +39,6 @@ function CreateBuild({ makes, renderNewBuild }){
                 renderNewBuild(newBuildData);
                 setNewBuildObject(newBuildObj)
             })
-        // updateUserBuildsData(newBuildObj)
     }
 
     return(
@@ -90,6 +91,7 @@ function CreateBuild({ makes, renderNewBuild }){
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
+            { addNewMakeClick ? <NewMakeForm /> : <button className="CreateBuild-newMake" onClick={()=>setAddNewMakeClick(true)}> Add a new Make </button> }
         </div>
     )
 }
