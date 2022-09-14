@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom"
-import CreateBuild from "./CreateBuild";
+import RenderForms from "./RenderForms";
 import SearchBuilds from "./SearchBuilds"
 import Home from "./Home";
 import NavBar from "./NavBar";
@@ -16,6 +16,7 @@ function UserFoundRoutes({ setUser, user }){
     },[])
 
     function updateAllMakes(buildArg){
+        console.log(buildArg)
         let newMakesArray = makes.filter((company) => company.id !== buildArg.make.id)
         newMakesArray = [...newMakesArray, buildArg.make]
         newMakesArray.sort((a,b)=>a.id-b.id)
@@ -58,7 +59,7 @@ function UserFoundRoutes({ setUser, user }){
                 <Routes>
                     <Route path='/' element={<Home userMakes={userMakes} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />
-                    <Route path='/createbuild' element={<CreateBuild makes={makes} renderNewBuild={renderNewBuild} />} />
+                    <Route path='/Create' element={<RenderForms makes={makes} renderNewBuild={renderNewBuild} />} />
                 </Routes>
             </div>
         </div>

@@ -3,14 +3,20 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
-        builds = Build.all
-        render json: builds, include: :make
+        make = Make.find_by!(id: params[:make_id])
+        builds = make.builds
+        render json: builds
     end
 
     def create
-        # byebug
-        make = find_make
-        new_build = make.builds.create!(build_params)
+        user = find_user
+        make = Make.find_by(id: params[:make_id])
+        user_make = user.makes.find_by(id: params[:make_id])
+            if !user_make
+                user.makes << make
+            end
+
+        new_build = user_make.builds.create!(build_params)
         render json: new_build, status: :created
     end
 

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
-import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
-import NewMakeForm from "./NewMakeForm";
 
-function CreateBuild({ makes, renderNewBuild }){
+function CreateBuildForm({ makes, setNewBuildObject, renderNewBuild, setNewBuildClick }){
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newMake, setNewMake] = useState(1)
     const [newModel, setNewModel] = useState("")
@@ -12,9 +10,7 @@ function CreateBuild({ makes, renderNewBuild }){
     const [newEngine, setNewEngine] = useState("")
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)
-    const [newBuildObject, setNewBuildObject] = useState(null)
-    const [addNewMakeClick, setAddNewMakeClick] = useState(null)
- 
+
     function addNewBuildData(e){
         e.preventDefault()
         const newBuildObj = {
@@ -37,13 +33,13 @@ function CreateBuild({ makes, renderNewBuild }){
             .then((response) => response.json())
             .then((newBuildData) =>{ 
                 renderNewBuild(newBuildData);
-                setNewBuildObject(newBuildObj)
+                setNewBuildObject(newBuildObj);
+                setNewBuildClick(null)
             })
     }
 
     return(
-        <div className="CreateBuild-div">
-            { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
+        <div>
             <form onSubmit={(e) => addNewBuildData(e)} >
                 Create a New Build
                 <input 
@@ -91,9 +87,9 @@ function CreateBuild({ makes, renderNewBuild }){
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
-            { addNewMakeClick ? <NewMakeForm /> : <button className="CreateBuild-newMake" onClick={()=>setAddNewMakeClick(true)}> Add a new Make </button> }
+            <button className="CreateBuild-closeForm" onClick={()=>setNewBuildClick(null)} > Close Form </button>
         </div>
     )
 }
 
-export default CreateBuild
+export default CreateBuildForm

@@ -5,6 +5,7 @@ function NewMakeForm(){
 
     return(
         <div className="NewMakeForm-div">
+            <form>
             <input 
             placeholder="Company Name..."
             className="NewMakeForm-input"
@@ -13,7 +14,9 @@ function NewMakeForm(){
             placeholder="Company Logo..."
             className="NewMakeForm-input"
             />
-            <button>Submit new Make</button>
+            <button className="NewMakeForm-submit">Submit new Make</button>
+            </form>
+            <button className="NewMakeForm-closeForm"> Close Form </button>
         </div>
     )
 }

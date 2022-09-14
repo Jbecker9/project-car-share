@@ -34,7 +34,7 @@
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px solid black;
     padding: 14px 10px;
     width: 200px;
     outline: none;
@@ -43,13 +43,28 @@
     transition: 0.25s;
 }
 
-.CreateBuild-newMake {
+.CreateBuild-renderButton {
     border: 0;
     background: #3498db;
     display: block;
     margin: 20px auto;
     text-align: center;
     border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: #203f54;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.CreateBuild-closeForm {
+    border: 0;
+    background: rgba(255, 0, 0, 0.767);
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid black;
     padding: 14px 10px;
     width: 200px;
     outline: none;

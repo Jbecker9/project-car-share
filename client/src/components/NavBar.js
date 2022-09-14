@@ -33,17 +33,17 @@ function NavBar({ setUser }){
                     isActive ? activeLinkStyle : linkStyle
                 }
             >
-                Search Builds
+                All Builds
             </NavLink>
             </ul>
             <ul>
             <NavLink
-            to="/createbuild"
+            to="/Create"
             className={({ isActive }) => 
                     isActive ? activeLinkStyle : linkStyle
                 }
             >
-                Create Build
+                Create 
             </NavLink>
             </ul>
             <ul>
