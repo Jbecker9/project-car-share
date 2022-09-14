@@ -23,7 +23,7 @@ function CreateBuildForm({ makes, setNewBuildObject, renderNewBuild, setNewBuild
             engine: newEngine,
             horsepower: newHorsePower
         }
-        fetch(`/makes/${newMake}/builds`, {
+        fetch(`/builds`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

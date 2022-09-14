@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "../styles/updateBuildForm.css"
 
-function UpdateBuildForm({ build, makes, renderUpdateBuild, setUpdateFormClick }){
+function UpdateBuildForm({ build, renderUpdateBuild, setUpdateFormClick }){
     const [updateBuildImage, setUpdateBuildImage] = useState(build.build_image)
-    const [updateBuildMake, setUpdateBuildMake] = useState(build.make_id)
     const [updateBuildModel, setUpdateBuildModel] = useState(build.model)
     const [updateBuildYear, setUpdateBuildYear] = useState(build.year)
     const [updateBuildSpec, setUpdateBuildSpec] = useState(build.spec)
@@ -16,7 +15,6 @@ function UpdateBuildForm({ build, makes, renderUpdateBuild, setUpdateFormClick }
         const updateBuildObj = {
             build_image: updateBuildImage,
             budget: parseInt(updateBuildBudget),
-            make_id: parseInt(updateBuildMake),
             model: updateBuildModel,
             year: parseInt(updateBuildYear),
             spec: updateBuildSpec,
@@ -44,13 +42,6 @@ function UpdateBuildForm({ build, makes, renderUpdateBuild, setUpdateFormClick }
                 className="CreateBuild-input"
                 placeholder="Image..."
                 />
-                <select 
-                defaultValue={build.make_id}
-                onChange={(e) => setUpdateBuildMake(e.target.value)}
-                className="CreateBuild-input" 
-                >
-                    { makes.map((company) => <option key={company.id} value={company.id} > {company.company_name} </option>) }
-                </select>
                 <input 
                 onChange={(e) => setUpdateBuildModel(e.target.value)}
                 className="CreateBuild-input"

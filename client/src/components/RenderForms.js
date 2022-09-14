@@ -23,7 +23,7 @@ function CreateBuild({ makes, renderNewBuild }){
         <div className="CreateBuild-div">
             { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
             { addNewBuildClick ? <CreateBuildForm makes={makes} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} setNewBuildClick={setNewBuildClick} /> : <button className="CreateBuild-renderButton" onClick={()=>renderNewBuildForm()} > Add a new Build </button> }
-            { addNewMakeClick ? <NewMakeForm /> : <button className="CreateBuild-renderButton" onClick={()=>renderNewMakeForm()}> Add a new Make </button> }
+            { addNewMakeClick ? <NewMakeForm setAddNewMakeClick={setAddNewMakeClick} /> : <button className="CreateBuild-renderButton" onClick={()=>renderNewMakeForm()}> Add a new Make </button> }
         </div>
     )
 }

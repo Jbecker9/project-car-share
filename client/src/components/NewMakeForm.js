@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/NewMakeForm.css"
 
-function NewMakeForm(){
+function NewMakeForm({ setAddNewMakeClick }){
 
     return(
         <div className="NewMakeForm-div">
@@ -16,7 +16,7 @@ function NewMakeForm(){
             />
             <button className="NewMakeForm-submit">Submit new Make</button>
             </form>
-            <button className="NewMakeForm-closeForm"> Close Form </button>
+            <button onClick={()=>setAddNewMakeClick(null)} className="NewMakeForm-closeForm"> Close Form </button>
         </div>
     )
 }

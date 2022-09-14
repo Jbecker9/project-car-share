@@ -16,7 +16,6 @@ function UserFoundRoutes({ setUser, user }){
     },[])
 
     function updateAllMakes(buildArg){
-        console.log(buildArg)
         let newMakesArray = makes.filter((company) => company.id !== buildArg.make.id)
         newMakesArray = [...newMakesArray, buildArg.make]
         newMakesArray.sort((a,b)=>a.id-b.id)
