@@ -8,16 +8,14 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def create
-        user = find_user
-        new_build = user.builds.create!(build_params)
+        # byebug
+        make = find_make
+        new_build = make.builds.create!(build_params)
         render json: new_build, status: :created
     end
 
     def update
-        # byebug
-        user = find_user
-        make = user.makes.find_by(id: params.permit[:make_id])
-        update_build = make.builds.find_by(id: params.permit[:id])
+        update_build = find_build
         update_build.update!(build_params)
         render json: update_build
     end
@@ -36,13 +34,18 @@ private
         User.find_by!(id: session[:user_id])
     end
 
-    def find_build
+    def find_make
         user = find_user
-        user.builds.find_by!(id: params[:id])
+        user.makes.find_by!(id: params[:make_id])
+    end
+
+    def find_build
+        make = find_make
+        make.builds.find_by!(id: params[:id])
     end
 
     def build_params
-        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower)
+        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id, :build )
     end
 
     def render_not_found_response(invalid)

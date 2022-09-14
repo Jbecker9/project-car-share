@@ -7,7 +7,7 @@ function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
 
     function deleteBuild(e){
         e.preventDefault()
-        fetch(`/builds/${build.id}`, {
+        fetch(`/makes/${build.make_id}/builds/${build.id}`, {
             method: "DELETE"
         }).then((response)=>response.json())
             .then((deletedBuildMakeData) => renderRemovedBuild(deletedBuildMakeData))

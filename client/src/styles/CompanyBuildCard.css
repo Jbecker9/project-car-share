@@ -14,7 +14,7 @@
     position: relative;
 }
 
-.CompanyBuildCard-button{
+.CompanyBuildCard-deleteButton{
     width: 90%;
     background-color: red;
     padding: 5px 40px;
