@@ -48,6 +48,11 @@ function UserFoundRoutes({ setUser, user }){
         } else {}
     }
 
+    function showNewMakeList(addedMake){
+        let addedMakeArray = [...makes, addedMake]
+        console.log(addedMakeArray)
+    }
+
 
     return(
         <div>
@@ -58,7 +63,7 @@ function UserFoundRoutes({ setUser, user }){
                 <Routes>
                     <Route path='/' element={<Home userMakes={userMakes} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />
-                    <Route path='/Create' element={<RenderForms makes={makes} renderNewBuild={renderNewBuild} />} />
+                    <Route path='/Create' element={<RenderForms showNewMakeList={showNewMakeList} makes={makes} renderNewBuild={renderNewBuild} />} />
                 </Routes>
             </div>
         </div>

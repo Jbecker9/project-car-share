@@ -12,6 +12,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: new_make
     end
 
+    def destroy
+        make = Make.find_by!(id: params[:id])
+        make.destroy
+    end
+
 private
 
     def make_params
@@ -25,5 +30,4 @@ private
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid }, status: :unprocessable_entity
     end
-
 end
