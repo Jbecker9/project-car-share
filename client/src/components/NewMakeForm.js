@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/NewMakeForm.css"
 
-function NewMakeForm({ setAddNewMakeClick, renderNewMakeList }){
+function NewMakeForm({ setAddNewMakeClick, showNewMakeList }){
     const [newMakeName, setNewMakeName] = useState("")
     const [newMakeImage, setNewMakeImage] = useState("")
 
@@ -19,7 +19,7 @@ function NewMakeForm({ setAddNewMakeClick, renderNewMakeList }){
             },
             body: JSON.stringify(newMakeObj)
         }).then((response)=>response.json())
-            .then((newMakeData)=>renderNewMakeList(newMakeData))
+            .then((newMakeData)=> showNewMakeList(newMakeData))
     }
 
     return(

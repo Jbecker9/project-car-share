@@ -52,6 +52,7 @@ function CreateBuildForm({ makes, setNewBuildObject, renderNewBuild, setNewBuild
                 onChange={(e) => setNewMake(e.target.value)}
                 className="CreateBuild-input" 
                 >
+                    
                     { makes.map((company) => <option key={company.id} value={company.id} >{company.company_name}</option>) }
                 </select>
                 <input 

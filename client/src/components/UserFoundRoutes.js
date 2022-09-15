@@ -22,6 +22,7 @@ function UserFoundRoutes({ setUser, user }){
         setMakes(newMakesArray)
     }
 
+    // buildArg => build
     function updateAllUserMakes(buildArg){
         let newUserMakesArray = userMakes.filter((company) => company.id !== buildArg.make.id)
         newUserMakesArray = [...newUserMakesArray, buildArg.make]
@@ -50,7 +51,7 @@ function UserFoundRoutes({ setUser, user }){
 
     function showNewMakeList(addedMake){
         let addedMakeArray = [...makes, addedMake]
-        console.log(addedMakeArray)
+        setMakes(addedMakeArray)
     }
 
 
