@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
+import NewMakeForm from "./NewMakeForm";
 
-function CreateBuildForm({ makes, setNewBuildObject, renderNewBuild, setNewBuildClick }){
+function CreateBuildForm({ renderNewMake, makes, setNewBuildObject, renderNewBuild, setCreateBuildFormClick }){
     const [newBuildImage, setNewBuildImage] = useState("")
-    const [newMake, setNewMake] = useState(1)
+    const [newBuildMake, setNewBuildMake] = useState("Add a New Make...")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
     const [newSpec, setNewSpec] = useState("Base")
     const [newEngine, setNewEngine] = useState("")
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)
+    const [newMakeName, setNewMakeName] = useState(null)
+    const [newMakeImage, setNewMakeImage] = useState(null)
 
-    function addNewBuildData(e){
-        e.preventDefault()
+    function addNewBuildData(){
         const newBuildObj = {
             build_image: newBuildImage,
             budget: parseInt(newBudget),
-            make_id: parseInt(newMake),
+            make_id: parseInt(newBuildMake),
             model: newModel,
             year: parseInt(newYear),
             spec: newSpec,
@@ -34,27 +36,61 @@ function CreateBuildForm({ makes, setNewBuildObject, renderNewBuild, setNewBuild
             .then((newBuildData) =>{ 
                 renderNewBuild(newBuildData);
                 setNewBuildObject(newBuildObj);
-                setNewBuildClick(null)
+                setCreateBuildFormClick(false)
             })
+    }
+
+    function addNewMakeData(){
+        const newMakeObj = {
+            company_name: newMakeName,
+            company_image: newMakeImage,
+            builds: [{
+                build_image: newBuildImage,
+                budget: parseInt(newBudget),
+                model: newModel,
+                year: parseInt(newYear),
+                spec: newSpec,
+                engine: newEngine,
+                horsepower: newHorsePower
+            }]
+        }
+        fetch(`/makes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newMakeObj)
+        }).then((response)=>response.json())
+            .then((newMakeData)=>renderNewMake(newMakeData))
+    }
+
+    function formSubmit(e){
+        e.preventDefault()
+        if (newBuildMake === "Add a New Make..."){
+            addNewMakeData()
+        } 
+        else {
+            addNewBuildData()
+        }
     }
 
     return(
         <div>
-            <form onSubmit={(e) => addNewBuildData(e)} >
-                Create a New Build
+            <h2 className="CreateBuild-h2"> Create a New Build </h2>
+            <form onSubmit={(e) => formSubmit(e)} >
                 <input 
                 onChange={(e) => setNewBuildImage(e.target.value)}
                 className="CreateBuild-input"
                 placeholder="Build Image..."
                 />
-                <select 
-                defaultValue={1}
-                onChange={(e) => setNewMake(e.target.value)}
+                <select
+                onChange={(e) => setNewBuildMake(e.target.value)}
                 className="CreateBuild-input" 
                 >
-                    
-                    { makes.map((company) => <option key={company.id} value={company.id} >{company.company_name}</option>) }
+                    <option> Add a New Make... </option>
+                    { makes.map((company) => <option key={company.id} value={parseInt(company.id)} >{company.company_name}</option>) }
                 </select>
+                { newBuildMake !== "Add a New Make..." ? null : <NewMakeForm setNewMakeImage={setNewMakeImage} setNewMakeName={setNewMakeName}/> }
                 <input 
                 onChange={(e) => setNewModel(e.target.value)}
                 className="CreateBuild-input"
@@ -88,7 +124,7 @@ function CreateBuildForm({ makes, setNewBuildObject, renderNewBuild, setNewBuild
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
-            <button className="CreateBuild-closeForm" onClick={()=>setNewBuildClick(null)} > Close Form </button>
+            <button className="CreateBuild-closeForm" onClick={()=>setCreateBuildFormClick(false)} > Close Form </button>
         </div>
     )
 }

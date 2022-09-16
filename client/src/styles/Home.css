@@ -1,0 +1,17 @@
+.Home-renderCreateBuildFormButton {
+    background: #3498db;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 5px;
+    width: 95%;
+    color: black;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.Home-renderCreateBuildFormButton:hover{
+    background: #3eb2ff;
+    border: 2px solid #3eb2ff;
+}

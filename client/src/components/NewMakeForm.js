@@ -1,30 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/NewMakeForm.css"
 
-function NewMakeForm({ setAddNewMakeClick, showNewMakeList }){
-    const [newMakeName, setNewMakeName] = useState("")
-    const [newMakeImage, setNewMakeImage] = useState("")
+function NewMakeForm({ setNewMakeName, setNewMakeImage, renderNewMake }){
 
-    function addNewMakeData(e){
-        e.preventDefault()
-        const newMakeObj = {
-            company_name: newMakeName,
-            company_image: newMakeImage
-        }
-        // console.log(newMakeObj)
-        fetch(`/makes`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newMakeObj)
-        }).then((response)=>response.json())
-            .then((newMakeData)=> showNewMakeList(newMakeData))
-    }
+    // function addNewMakeData(e){
+    //     e.preventDefault()
+    //     const newMakeObj = {
+    //         company_name: newMakeName,
+    //         company_image: newMakeImage
+    //     }
+    //     // console.log(newMakeObj)
+    //     fetch(`/makes`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(newMakeObj)
+    //     }).then((response)=>response.json())
+    //         .then((newMakeData)=>renderNewMake(newMakeData))
+    // }
 
     return(
         <div className="NewMakeForm-div">
-            <form onSubmit={(e)=>addNewMakeData(e)} >
             <input 
             onChange={(e)=>setNewMakeName(e.target.value)}
             placeholder="Company Name..."
@@ -35,9 +32,6 @@ function NewMakeForm({ setAddNewMakeClick, showNewMakeList }){
             placeholder="Company Logo..."
             className="NewMakeForm-input"
             />
-            <button className="NewMakeForm-submit">Submit new Make</button>
-            </form>
-            <button onClick={()=>setAddNewMakeClick(null)} className="NewMakeForm-closeForm"> Close Form </button>
         </div>
     )
 }

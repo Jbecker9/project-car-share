@@ -15,19 +15,21 @@ function UserFoundRoutes({ setUser, user }){
             .then((companyData)=>setMakes(companyData))
     },[])
 
-    function updateAllMakes(buildArg){
-        let newMakesArray = makes.filter((company) => company.id !== buildArg.make.id)
-        newMakesArray = [...newMakesArray, buildArg.make]
+    function updateAllMakes(build){
+        let newMakesArray = makes.filter((company) => company.id !== build.make.id)
+        newMakesArray = [...newMakesArray, build.make]
         newMakesArray.sort((a,b)=>a.id-b.id)
         setMakes(newMakesArray)
     }
 
     // buildArg => build
-    function updateAllUserMakes(buildArg){
-        let newUserMakesArray = userMakes.filter((company) => company.id !== buildArg.make.id)
-        newUserMakesArray = [...newUserMakesArray, buildArg.make]
-        newUserMakesArray.sort((a,b) => a.id-b.id)
-        setUserMakes(newUserMakesArray)
+    function updateAllUserMakes(build){
+        let newUserState = user
+        let newUserMakesArray = user.makes.filter((company) => company.id !== build.make.id)
+        newUserState.makes = [...newUserMakesArray, build.make]
+        newUserState.makes.sort((a,b) => a.id-b.id)
+        setUser(newUserState)
+        // setUserMakes(newUserMakesArray)
     }
 
     function renderNewBuild(newBuild){
@@ -49,7 +51,7 @@ function UserFoundRoutes({ setUser, user }){
         } else {}
     }
 
-    function showNewMakeList(addedMake){
+    function renderNewMake(addedMake){
         let addedMakeArray = [...makes, addedMake]
         setMakes(addedMakeArray)
     }
@@ -62,9 +64,9 @@ function UserFoundRoutes({ setUser, user }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home userMakes={userMakes} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
+                    <Route path='/' element={<Home renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
                     <Route path='/search' element={<SearchBuilds makes={makes} />} />
-                    <Route path='/Create' element={<RenderForms showNewMakeList={showNewMakeList} makes={makes} renderNewBuild={renderNewBuild} />} />
+                    <Route path='/Create' element={<RenderForms makes={makes} renderNewBuild={renderNewBuild} />} />
                 </Routes>
             </div>
         </div>

@@ -4,7 +4,7 @@ import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 import CreateBuildForm from "./CreateBuildForm";
 import NewMakeForm from "./NewMakeForm";
 
-function CreateBuild({ makes, renderNewBuild, showNewMakeList }){
+function CreateBuild({ makes, renderNewBuild }){
     const [newBuildObject, setNewBuildObject] = useState(null)
     const [addNewBuildClick, setNewBuildClick] = useState(null)
     const [addNewMakeClick, setAddNewMakeClick] = useState(false)
@@ -23,7 +23,7 @@ function CreateBuild({ makes, renderNewBuild, showNewMakeList }){
         <div className="CreateBuild-div">
             { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
             { addNewBuildClick ? <CreateBuildForm makes={makes} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} setNewBuildClick={setNewBuildClick} /> : <button className="CreateBuild-renderButton" onClick={()=>renderNewBuildForm()} > Add a new Build </button> }
-            { addNewMakeClick ? <NewMakeForm showNewMakeList={showNewMakeList} setAddNewMakeClick={setAddNewMakeClick} /> : <button className="CreateBuild-renderButton" onClick={()=>renderNewMakeForm()}> Add a new Make </button> }
+            { addNewMakeClick ? <NewMakeForm setAddNewMakeClick={setAddNewMakeClick} /> : <button className="CreateBuild-renderButton" onClick={()=>renderNewMakeForm()}> Add a new Make </button> }
         </div>
     )
 }

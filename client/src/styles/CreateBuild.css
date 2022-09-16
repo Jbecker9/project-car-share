@@ -1,5 +1,4 @@
 .CreateBuild-div{
-    box-shadow: 2px 4px 8px 2px rgb(182, 182, 182);
     width: 300px;
     padding: 40px;
     position: absolute;
@@ -22,10 +21,14 @@
     border: 2px solid #3498db;
     padding: 14px 10px;
     width: 200px;
-    outline: none;
-    color: #203f54;
+    color: black;
     border-radius: 24px;
-    transition: 0.25s;
+    transition: 0.05s;
+}
+
+.CreateBuild-input:focus{
+    border: 2px solid black;
+    padding: 16px 25px;
 }
 
 .CreateBuild-submit {
@@ -71,4 +74,9 @@
     color: #203f54;
     border-radius: 24px;
     transition: 0.25s;
+}
+
+.CreateBuild-h2{
+    text-align: center;
+    text-decoration: underline;
 }
