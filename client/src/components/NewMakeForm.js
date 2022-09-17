@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/NewMakeForm.css"
 
-function NewMakeForm({ setNewMakeName, setNewMakeImage, renderNewMake }){
+function NewMakeForm({ renderNewMake, setMakeFormClick }){
+    const [newMakeName, setNewMakeName] = useState(null)
+    const [newMakeImage, setNewMakeImage] = useState(null)
 
     // function addNewMakeData(e){
     //     e.preventDefault()
@@ -22,16 +24,20 @@ function NewMakeForm({ setNewMakeName, setNewMakeImage, renderNewMake }){
 
     return(
         <div className="NewMakeForm-div">
-            <input 
-            onChange={(e)=>setNewMakeName(e.target.value)}
-            placeholder="Company Name..."
-            className="NewMakeForm-input"
-            />
-            <input 
-            onChange={(e)=>setNewMakeImage(e.target.value)}
-            placeholder="Company Logo..."
-            className="NewMakeForm-input"
-            />
+            <form>
+                <input 
+                onChange={(e)=>setNewMakeName(e.target.value)}
+                placeholder="Company Name..."
+                className="NewMakeForm-input"
+                />
+                <input 
+                onChange={(e)=>setNewMakeImage(e.target.value)}
+                placeholder="Company Logo..."
+                className="NewMakeForm-input"
+                />
+                <button className="NewMakeForm-submit">Submit Make</button>
+            </form>
+                <button onClick={()=>setMakeFormClick(false)} className="NewMakeForm-closeForm">Close Form</button>
         </div>
     )
 }

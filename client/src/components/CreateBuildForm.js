@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
-import NewMakeForm from "./NewMakeForm";
 
-function CreateBuildForm({ renderNewMake, makes, setNewBuildObject, renderNewBuild, setCreateBuildFormClick }){
+function CreateBuildForm({ make, setNewBuildObject, renderNewBuild, setCreateBuildFormClick }){
     const [newBuildImage, setNewBuildImage] = useState("")
-    const [newBuildMake, setNewBuildMake] = useState("Add a New Make...")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
     const [newSpec, setNewSpec] = useState("Base")
     const [newEngine, setNewEngine] = useState("")
     const [newHorsePower, setNewHorsePower] = useState("")
     const [newBudget, setNewBudget] = useState(0)
-    const [newMakeName, setNewMakeName] = useState(null)
-    const [newMakeImage, setNewMakeImage] = useState(null)
 
-    function addNewBuildData(){
+
+    function newBuildSubmit(e){
+        e.preventDefault()
         const newBuildObj = {
             build_image: newBuildImage,
             budget: parseInt(newBudget),
-            make_id: parseInt(newBuildMake),
+            make_id: parseInt(make.id),
             model: newModel,
             year: parseInt(newYear),
             spec: newSpec,
@@ -40,57 +38,16 @@ function CreateBuildForm({ renderNewMake, makes, setNewBuildObject, renderNewBui
             })
     }
 
-    function addNewMakeData(){
-        const newMakeObj = {
-            company_name: newMakeName,
-            company_image: newMakeImage,
-            builds: [{
-                build_image: newBuildImage,
-                budget: parseInt(newBudget),
-                model: newModel,
-                year: parseInt(newYear),
-                spec: newSpec,
-                engine: newEngine,
-                horsepower: newHorsePower
-            }]
-        }
-        fetch(`/makes`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newMakeObj)
-        }).then((response)=>response.json())
-            .then((newMakeData)=>renderNewMake(newMakeData))
-    }
-
-    function formSubmit(e){
-        e.preventDefault()
-        if (newBuildMake === "Add a New Make..."){
-            addNewMakeData()
-        } 
-        else {
-            addNewBuildData()
-        }
-    }
 
     return(
         <div>
-            <h2 className="CreateBuild-h2"> Create a New Build </h2>
-            <form onSubmit={(e) => formSubmit(e)} >
+            <h2 className="CreateBuild-h2"> Create a New {make.company_name} </h2>
+            <form onSubmit={(e) => newBuildSubmit(e)} >
                 <input 
                 onChange={(e) => setNewBuildImage(e.target.value)}
                 className="CreateBuild-input"
                 placeholder="Build Image..."
                 />
-                <select
-                onChange={(e) => setNewBuildMake(e.target.value)}
-                className="CreateBuild-input" 
-                >
-                    <option> Add a New Make... </option>
-                    { makes.map((company) => <option key={company.id} value={parseInt(company.id)} >{company.company_name}</option>) }
-                </select>
-                { newBuildMake !== "Add a New Make..." ? null : <NewMakeForm setNewMakeImage={setNewMakeImage} setNewMakeName={setNewMakeName}/> }
                 <input 
                 onChange={(e) => setNewModel(e.target.value)}
                 className="CreateBuild-input"
