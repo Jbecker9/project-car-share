@@ -26,5 +26,12 @@ function App() {
 
 export default App;
 
-
-// User.makes to userbuilds (instead of all makes) so makes can rerender state from make_id in newly created build, filter user.makes
+// TO DO:
+//  - Build POST request is succesful and the new build rerenders on the front-end
+//  - Make POST request is succesful and does not create build object with null values
+//  - Change "All Builds" Nav name to something that is more on-par with nav pages functionality
+//  - Change "Create" Nav to a different functionality
+//    - Ideas:
+//      - Most Horsepower
+//      - Most Budget
+//      - Popular/Featured Makes
