@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/NewMakeFormFormExistingMakeCard.css"
 
-function NewMakeFormFormExistingMakeCard({ setBuildFormClickMake, company }){
+function NewMakeFormFormExistingMakeCard({ renderBuildForm, company }){
 
     return(
         <div className="NewMakeFormFormExistingMakeCard-div">
-            <h4 className="NewMakeFormFormExistingMakeCard-h4" onClick={()=>setBuildFormClickMake(company)}>{company.company_name}</h4>
+            <h4 className="NewMakeFormFormExistingMakeCard-h4" onClick={()=>renderBuildForm(company)}>{company.company_name}</h4>
         </div>
     )
 }

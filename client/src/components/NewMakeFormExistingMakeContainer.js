@@ -1,7 +1,7 @@
 import React from "react";
 import NewMakeFormExistingMakeCard from "./NewMakeFormExistingMakeCard";
 
-function NewMakeFormExistingMakeContainer({ setBuildFormClickMake, existingMakesForNewBuild }){
+function NewMakeFormExistingMakeContainer({ renderBuildForm, existingMakesForNewBuild }){
 
     return(
         <div>
@@ -9,7 +9,7 @@ function NewMakeFormExistingMakeContainer({ setBuildFormClickMake, existingMakes
         <h2 className="NewMakeForm-existingBuildsh2">Add a new Build from an existing Make:</h2>
         </div>
         <div className="NewMakeForm-existingBuildsDiv">
-        { existingMakesForNewBuild.map((company)=> <NewMakeFormExistingMakeCard setBuildFormClickMake={setBuildFormClickMake} key={company.id} company={company} /> ) }
+        { existingMakesForNewBuild.map((company)=> <NewMakeFormExistingMakeCard renderBuildForm={renderBuildForm} key={company.id} company={company} /> ) }
         </div>
         </div>
 )}

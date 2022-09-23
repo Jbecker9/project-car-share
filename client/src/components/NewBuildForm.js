@@ -78,6 +78,7 @@ function NewBuildForm({ setNewBuildObject, renderNewBuild, buildFormClickMake, s
                     className="NewMakeForm-buildInput"
                     placeholder="Budget..." 
                 />
+                <button className="NewBuildForm-submit"> Submit Build </button>
             </form>
         </div>
     )
