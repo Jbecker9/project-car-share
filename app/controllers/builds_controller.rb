@@ -45,7 +45,7 @@ private
     end
 
     def build_params
-        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id )
+        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id, make_attributes: [:company_name, :company_image])
     end
 
     def render_not_found_response(invalid)

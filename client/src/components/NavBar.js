@@ -23,27 +23,17 @@ function NavBar({ setUser }){
                 }
                 activestyle={{backGround:"#2ecc71"}}
             >
-                Home
+                User Garage
             </NavLink>
             </ul>
             <ul>
             <NavLink
-                to="/search"
+                to="/makes"
                 className={({ isActive }) => 
                     isActive ? activeLinkStyle : linkStyle
                 }
             >
-                All Builds
-            </NavLink>
-            </ul>
-            <ul>
-            <NavLink
-            to="/Create"
-            className={({ isActive }) => 
-                    isActive ? activeLinkStyle : linkStyle
-                }
-            >
-                Create 
+                All Makes
             </NavLink>
             </ul>
             <ul>

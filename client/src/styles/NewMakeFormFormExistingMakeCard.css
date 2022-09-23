@@ -1,0 +1,13 @@
+.NewMakeFormFormExistingMakeCard-div{
+    width: 24%;
+    align-items: center;
+    text-align: center;
+    margin: 3px;
+    flex-wrap: wrap;
+    color: black;
+    cursor: pointer;
+}
+
+.NewMakeFormFormExistingMakeCard-div:hover{
+    text-decoration: underline;
+}

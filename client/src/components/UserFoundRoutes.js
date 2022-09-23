@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom"
-import RenderForms from "./RenderForms";
 import SearchBuilds from "./SearchBuilds"
 import Home from "./Home";
 import NavBar from "./NavBar";
@@ -8,12 +7,23 @@ import NavBar from "./NavBar";
 function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
     const [userMakes, setUserMakes] = useState(user.makes.sort((a,b)=> a.id-b.id))
+    const [existingMakesForNewBuild, setExistingMakesForNewBuild] = useState(makes.filter((globalCompany)=>{
+        return !user.makes.some(function(userCompany){
+            return globalCompany.id === userCompany.id;  
+        });
+    }))
 
     useEffect(()=>{
         fetch("/makes")
             .then((response)=>response.json())
-            .then((companyData)=>setMakes(companyData))
-    },[])
+            .then((companyData)=>{setMakes(companyData);
+                setExistingMakesForNewBuild(companyData.filter((globalCompany)=>{
+                    return !user.makes.some(function(userCompany){
+                        return globalCompany.id === userCompany.id;  
+                    })
+                }))
+            })
+    },[user])
 
     function updateAllMakes(build){
         let newMakesArray = makes.filter((company) => company.id !== build.make.id)
@@ -51,9 +61,22 @@ function UserFoundRoutes({ setUser, user }){
         } else {}
     }
 
-    function renderNewMake(addedMake){
-        let addedMakeArray = [...makes, addedMake]
+    function renderNewMake(newBuild){
+        renderNewMakeAllBuildsByMake(newBuild.make)
+        renderNewMakeHomePage(newBuild.make)
+    }
+
+    function renderNewMakeAllBuildsByMake(newMake){
+        let addedMakeArray = [...makes, newMake.make]
+        addedMakeArray.sort((a,b) => a.id-b.id)
         setMakes(addedMakeArray)
+    }
+
+    function renderNewMakeHomePage(newMake){
+        let newUserState = user
+        newUserState.makes = [...user.makes, newMake]
+        newUserState.makes.sort((a,b) => a.id-b.id)
+        setUser(newUserState)
     }
 
 
@@ -64,9 +87,8 @@ function UserFoundRoutes({ setUser, user }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
-                    <Route path='/search' element={<SearchBuilds makes={makes} />} />
-                    <Route path='/Create' element={<RenderForms makes={makes} renderNewBuild={renderNewBuild} />} />
+                    <Route path='/' element={<Home existingMakesForNewBuild={existingMakesForNewBuild} renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
+                    <Route path='/makes' element={<SearchBuilds makes={makes} />} />
                 </Routes>
             </div>
         </div>

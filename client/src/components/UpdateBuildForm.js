@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/updateBuildForm.css"
+import "../styles/CreateBuild.css"
 
 function UpdateBuildForm({ build, renderUpdateBuild, setUpdateFormClick }){
     const [updateBuildImage, setUpdateBuildImage] = useState(build.build_image)
