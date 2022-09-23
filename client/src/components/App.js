@@ -27,11 +27,9 @@ function App() {
 export default App;
 
 // TO DO:
-//  - Build POST request is succesful and the new build rerenders on the front-end
-//  - Make POST request is succesful and does not create build object with null values
-//  - Change "All Builds" Nav name to something that is more on-par with nav pages functionality
-//  - Change "Create" Nav to a different functionality
-//    - Ideas:
-//      - Most Horsepower
-//      - Most Budget
-//      - Popular/Featured Makes
+//  - Render Delete and Update Build on frontend
+//  - Add a 3rd NavBar Route
+//    - Most Horsepower
+//    - Most Recent Builds
+//    - Highest/Lowest Budget
+//    - By Year
