@@ -3,6 +3,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
+        user = find_user
         make = Make.find_by!(id: params[:make_id])
         builds = make.builds
         render json: builds
@@ -10,18 +11,34 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = find_user
-        new_build = user.builds.create!(build_params)
-        render json: new_build, status: :created
+        # byebug
+        if params[:make_id]
+            unless find_user_make_no_error
+                added_make = Make.find_by(params[:make_id])
+                user.makes << added_make
+                user.makes.order(:id)
+            else
+            end
+            make = find_user_make_no_error
+            new_build = make.builds.create!(build_params)
+            render json: new_build, status: :created
+        else
+            new_build = user.builds.create!(build_params)
+            render json: new_build, status: :created
+        end
     end
 
     def update
+        user = find_user
+        make = find_user_make_error
         update_build = find_build
         update_build.update!(build_params)
         render json: update_build
     end
 
     def destroy
-        # byebug
+        user = find_user
+        make = find_user_make_error
         deleted_build = find_build
         deleted_build.destroy
         render json: deleted_build
@@ -30,17 +47,18 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 private
 
     def find_user
-        # byebug
         User.find_by!(id: session[:user_id])
     end
 
-    def find_make
-        user = find_user
+    def find_user_make_error
         user.makes.find_by!(id: params[:make_id])
     end
 
+    def find_user_make_no_error
+        user.makes.find_by(id: params[:make_id])
+    end
+
     def find_build
-        make = find_make
         make.builds.find_by!(id: params[:id])
     end
 

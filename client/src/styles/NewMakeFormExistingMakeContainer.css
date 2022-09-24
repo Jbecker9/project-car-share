@@ -1,4 +1,4 @@
-.Home-renderCreateBuildFormButton {
+.NewMakeFormExistingMakeContainer-button{
     background: #3498db;
     display: block;
     margin: 20px auto;
@@ -9,13 +9,4 @@
     color: black;
     border-radius: 15px;
     cursor: pointer;
-}
-
-.Home-renderCreateBuildFormButton:hover{
-    background: #3eb2ff;
-    border: 2px solid #3eb2ff;
-}
-
-.Home-h2{
-    text-align: center;
 }

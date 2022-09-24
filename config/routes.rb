@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   resources :builds, only: [:create]
 
+  get "/non_user_makes", to: "makes#show"
+
   resources :makes, only: [:index, :create, :destroy] do
-    resources :builds, only: [:index, :update, :destroy]
+    resources :builds, only: [:index, :create, :update, :destroy]
   end
   
   # Routing logic: fallback requests for React Router.

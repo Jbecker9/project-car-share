@@ -6,24 +6,22 @@ import NavBar from "./NavBar";
 
 function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
-    const [userMakes, setUserMakes] = useState(user.makes.sort((a,b)=> a.id-b.id))
-    const [existingMakesForNewBuild, setExistingMakesForNewBuild] = useState(makes.filter((globalCompany)=>{
-        return !user.makes.some(function(userCompany){
-            return globalCompany.id === userCompany.id;  
-        });
-    }))
+    const [userMakes, setUserMakes] = useState(user.makes)
+    const [nonUserMakes, setNonUserMakes] = useState(makes)
 
     useEffect(()=>{
         fetch("/makes")
             .then((response)=>response.json())
-            .then((companyData)=>{setMakes(companyData);
-                setExistingMakesForNewBuild(companyData.filter((globalCompany)=>{
-                    return !user.makes.some(function(userCompany){
-                        return globalCompany.id === userCompany.id;  
-                    })
-                }))
+            .then((companyData)=>{
+                setMakes(companyData);
+                removeUserMakes(companyData)
             })
-    },[user])
+    },[])
+
+    function removeUserMakes(makeArray){
+        let newNonUserMakesArray = makeArray.filter((company)=>!user.makes.some((userCompany) => userCompany.id === company.id))
+        // console.log(newNonUserMakesArray)
+    }
 
     function updateAllMakes(build){
         let newMakesArray = makes.filter((company) => company.id !== build.make.id)
@@ -87,7 +85,7 @@ function UserFoundRoutes({ setUser, user }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home existingMakesForNewBuild={existingMakesForNewBuild} renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
+                    <Route path='/' element={<Home renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
                     <Route path='/makes' element={<SearchBuilds makes={makes} />} />
                 </Routes>
             </div>

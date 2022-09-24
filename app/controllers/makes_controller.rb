@@ -6,8 +6,16 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: makes
     end
 
+    def show
+        user = find_user
+        makes = Make.all
+        new_makes = makes.reject { |make| make.id == user.makes.each { |user_make| user_make.id }}
+        byebug
+        render json: new_makes 
+    end
+
     def create
-        user = User.find_by!(id: session[:user_id])
+        user = find_user
         new_make = user.makes.create!(make_params)
         render json: new_make
     end
@@ -21,6 +29,10 @@ private
 
     def make_params
         params.permit(:company_name, :company_image, builds_attributes: [:build_image, :budget, :model, :year, :spec, :engine, :horsepower, :id, :user_id])
+    end
+
+    def find_user
+        User.find_by!(id: session[:user_id])
     end
 
     def render_not_found_response(invalid)
