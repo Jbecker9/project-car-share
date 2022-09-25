@@ -8,10 +8,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def show
         user = find_user
-        makes = Make.all
-        new_makes = makes.reject { |make| make.id == user.makes.each { |user_make| user_make.id }}
-        byebug
-        render json: new_makes 
+        all_makes = Make.all
+        user_makes_id = user.makes.map { |make| make[:id] }
+        non_user_makes = all_makes.reject { |make| user_makes_id.include?(make[:id]) }
+        # byebug
+        render json: non_user_makes
     end
 
     def create
