@@ -7,21 +7,19 @@ import NavBar from "./NavBar";
 function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
     const [userMakes, setUserMakes] = useState(user.makes)
-    const [nonUserMakes, setNonUserMakes] = useState(makes)
+    const [nonUserMakes, setNonUserMakes] = useState(null)
 
     useEffect(()=>{
         fetch("/makes")
             .then((response)=>response.json())
-            .then((companyData)=>{
-                setMakes(companyData);
-                removeUserMakes(companyData)
-            })
+            .then((companyData)=>setMakes(companyData))
     },[])
 
-    function removeUserMakes(makeArray){
-        let newNonUserMakesArray = makeArray.filter((company)=>!user.makes.some((userCompany) => userCompany.id === company.id))
-        // console.log(newNonUserMakesArray)
-    }
+    useEffect(()=>{
+        fetch("/non_user_makes")
+        .then((response)=>response.json())
+            .then((nonUserMakeData)=>setNonUserMakes(nonUserMakeData))
+    },[])
 
     function updateAllMakes(build){
         let newMakesArray = makes.filter((company) => company.id !== build.make.id)
@@ -85,7 +83,7 @@ function UserFoundRoutes({ setUser, user }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
+                    <Route path='/' element={<Home nonUserMakes={nonUserMakes} setNonUserMakes={setNonUserMakes} renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
                     <Route path='/makes' element={<SearchBuilds makes={makes} />} />
                 </Routes>
             </div>

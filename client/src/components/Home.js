@@ -3,28 +3,37 @@ import UserBuildContainer from "./UserBuildContainer";
 import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 import "../styles/Home.css"
 import NewMakeForm from "./NewMakeForm";
-import NewBuildForm from "./NewBuildForm"
-import NewMakeFormExistingMakeContainer from "./NewMakeFormExistingMakeContainer";
+import RenderOptionsOrForm from "./RenderOptionsOrForm";
 
 function Home({ renderNewMake, renderNewBuild, user, makes, renderUpdateBuild, renderRemovedBuild }){
     const [makeFormClick, setMakeFormClick] = useState(false)
-    const [buildFormClickMake, setBuildFormClickMake] = useState(null)
     const [newBuildObject, setNewBuildObject] = useState(null)
+    const [selectMakeClick, setSelectMakeClick] = useState(false)
+    const [nonUserMakes, setNonUserMakes] = useState(null)
+    
 
     function renderMakeForm(){
         setMakeFormClick(true)
-        setBuildFormClickMake(null)
+        setSelectMakeClick(false)
     }
 
-    function renderBuildForm(company){
-        setBuildFormClickMake(company)
-        setMakeFormClick(false)
+    function renderSelectMake(e){
+        e.preventDefault()
+        fetch("/non_user_makes")
+        .then((response)=>response.json())
+            .then((nonUserMakeData)=>{ 
+                setNonUserMakes(nonUserMakeData);
+                setMakeFormClick(false);
+                setSelectMakeClick(true);
+            })
     }
+
 
     return(
         <div>
             { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
-            { buildFormClickMake ? <NewBuildForm setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} setBuildFormClickMake={setBuildFormClickMake} buildFormClickMake={buildFormClickMake}/> : <NewMakeFormExistingMakeContainer renderBuildForm={renderBuildForm} setBuildFormClickMake={setBuildFormClickMake} /> }
+            <h2 className="Home-h2">Add a new Build from an existing Make:</h2>
+            { selectMakeClick ? <RenderOptionsOrForm nonUserMakes={nonUserMakes} /> : <button className="Home-renderCreateBuildFormButton" onClick={(e)=>renderSelectMake(e)} > Select an existing Make </button> }
             <h2 className="Home-h2"> Can not find your make? </h2>
             { makeFormClick ? <NewMakeForm makes={makes} setNewBuildObject={setNewBuildObject} renderNewMake={renderNewMake} setMakeFormClick={setMakeFormClick} /> : <button onClick={()=>renderMakeForm()} className="Home-renderCreateBuildFormButton">Add a New Make</button> }
             { user.makes.map((make) => <UserBuildContainer setNewBuildObject={setNewBuildObject} renderNewMake={renderNewMake} renderNewBuild={renderNewBuild} renderRemovedBuild={renderRemovedBuild} renderUpdateBuild={renderUpdateBuild} makes={makes} make={make} key={make.id} /> )}
