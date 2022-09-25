@@ -11,15 +11,14 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = find_user
-        # byebug
         if params[:make_id]
-            unless find_user_make_no_error
+            unless user.makes.find_by(id: params[:make_id])
                 added_make = Make.find_by(params[:make_id])
                 user.makes << added_make
                 user.makes.order(:id)
             else
             end
-            make = find_user_make_no_error
+            make = user.makes.find_by(id: params[:make_id])
             new_build = make.builds.create!(build_params)
             render json: new_build, status: :created
         else
@@ -51,6 +50,7 @@ private
     end
 
     def find_user_make_error
+        user = find_user
         user.makes.find_by!(id: params[:make_id])
     end
 

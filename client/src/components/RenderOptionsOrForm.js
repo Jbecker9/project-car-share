@@ -3,15 +3,15 @@ import "../styles/SelectMakeForBuildForm.css";
 import CreateBuildForm from "./CreateBuildForm";
 import SelectMakeOptions from "./SelectMakeOptions";
 
-function RenderOptionsOrForm({ renderBuildForm, nonUserMakes }){
+function RenderOptionsOrForm({ makeRef, setMakeRef, renderBuildForm, nonUserMakes }){
     const [displayBuildForm, setDisplayBuildFormClick] = useState(false)
-    const [newBuildMake, setNewBuildMake] = useState(nonUserMakes[0])
+    const [newBuildMakeOption, setNewBuildMakeOption] = useState(nonUserMakes[0])
     
     
 
     return(
         <div>
-            { displayBuildForm ? <CreateBuildForm renderBuildForm={renderBuildForm} setDisplayBuildFormClick={setDisplayBuildFormClick} newBuildMake={newBuildMake}/> : <SelectMakeOptions setDisplayBuildFormClick={setDisplayBuildFormClick} setNewBuildMake={setNewBuildMake} nonUserMakes={nonUserMakes} newBuildMake={newBuildMake} /> }
+            { displayBuildForm ? <CreateBuildForm makeRef={makeRef} renderBuildForm={renderBuildForm} setDisplayBuildFormClick={setDisplayBuildFormClick} /> : <SelectMakeOptions setDisplayBuildFormClick={setDisplayBuildFormClick} setNewBuildMakeOption={setNewBuildMakeOption} nonUserMakes={nonUserMakes} newBuildMakeOption={newBuildMakeOption} setMakeRef={setMakeRef}/> }
         </div>
     )
 }

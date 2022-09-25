@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 
-function CreateBuildForm({ setDisplayBuildFormClick, newBuildMake, setNewBuildObject, renderNewBuild }){
+function CreateBuildForm({ setDisplayBuildFormClick, makeRef, setNewBuildObject, renderNewBuild }){
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
@@ -16,14 +16,13 @@ function CreateBuildForm({ setDisplayBuildFormClick, newBuildMake, setNewBuildOb
         const newBuildObj = {
             build_image: newBuildImage,
             budget: parseInt(newBudget),
-            make_id: parseInt(newBuildMake),
             model: newModel,
             year: parseInt(newYear),
             spec: newSpec,
             engine: newEngine,
             horsepower: newHorsePower
         }
-        fetch(`/builds`, {
+        fetch(`/makes/${makeRef.id}/builds`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +40,7 @@ function CreateBuildForm({ setDisplayBuildFormClick, newBuildMake, setNewBuildOb
 
     return(
         <div>
-            <h2 className="CreateBuild-h2"> Create a New {newBuildMake.company_name} </h2>
+            <h2 className="CreateBuild-h2"> Create a New {makeRef.company_name} </h2>
             <form onSubmit={(e) => newBuildSubmit(e)} >
                 <input 
                 onChange={(e) => setNewBuildImage(e.target.value)}
