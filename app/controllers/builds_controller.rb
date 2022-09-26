@@ -25,10 +25,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def destroy
         user = find_user
-        make = find_user_make_error
-        deleted_build = find_build
+        make = user.makes.find_by!(id: params[:make_id])
+        deleted_build = make.builds.find_by!(id: params[:id])
         deleted_build.destroy
-        render json: deleted_build
+        render json: user
     end
         
 private

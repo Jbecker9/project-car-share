@@ -5,8 +5,7 @@ import UpdateBuildForm from "./UpdateBuildForm";
 function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
     const [updateFormClick, setUpdateFormClick] = useState(false)
 
-    function deleteBuild(e){
-        e.preventDefault()
+    function deleteBuild(){
         fetch(`/makes/${build.make_id}/builds/${build.id}`, {
             method: "DELETE"
         }).then((response)=>response.json())
@@ -20,7 +19,7 @@ function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
             <h3> {build.horsepower}hp {build.engine} </h3>
             <img src={build.build_image} alt="User Vehicle" className="UserBuildCard-img" />
             <button onClick={()=>setUpdateFormClick(!updateFormClick)} className="UserBuildCard-updateButton"> Update Build </button>
-            <button onClick={(e)=>deleteBuild(e)} className="UserBuildCard-deleteButton"> Delete Build </button>
+            <button onClick={()=>deleteBuild()} className="UserBuildCard-deleteButton"> Delete Build </button>
             { updateFormClick ? <UpdateBuildForm renderUpdateBuild={renderUpdateBuild} makes={makes} build={build} setUpdateFormClick={setUpdateFormClick} /> : null }
         </div>
     )

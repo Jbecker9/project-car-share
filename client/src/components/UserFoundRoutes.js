@@ -6,19 +6,11 @@ import NavBar from "./NavBar";
 
 function UserFoundRoutes({ setUser, user }){
     const [makes, setMakes] = useState([])
-    const [userMakes, setUserMakes] = useState(user.makes)
-    const [nonUserMakes, setNonUserMakes] = useState(null)
 
     useEffect(()=>{
         fetch("/makes")
             .then((response)=>response.json())
             .then((companyData)=>setMakes(companyData))
-    },[])
-
-    useEffect(()=>{
-        fetch("/non_user_makes")
-        .then((response)=>response.json())
-            .then((nonUserMakeData)=>setNonUserMakes(nonUserMakeData))
     },[])
 
     function updateAllMakes(build){
@@ -49,12 +41,10 @@ function UserFoundRoutes({ setUser, user }){
     }
 
     function renderRemovedBuild(removedBuild){
-        updateAllMakes(removedBuild)
-        updateAllUserMakes(removedBuild)
-        if (removedBuild.make.builds.length === 0){
-            let removeEmptyMakeArray = userMakes.filter((company) => company.id !== removedBuild.make.id)
-            setUserMakes(removeEmptyMakeArray)
-        } else {}
+        let newUserState = user
+        console.log(removedBuild)
+        newUserState.makes = removedBuild.makes
+        setUser(newUserState)
     }
 
     function renderNewMake(newBuild){
@@ -83,7 +73,7 @@ function UserFoundRoutes({ setUser, user }){
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>
-                    <Route path='/' element={<Home nonUserMakes={nonUserMakes} setNonUserMakes={setNonUserMakes} renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
+                    <Route path='/' element={<Home renderNewBuild={renderNewBuild} renderNewMake={renderNewMake} user={user} makes={makes} renderUpdateBuild={renderUpdateBuild} renderRemovedBuild={renderRemovedBuild} />} />
                     <Route path='/makes' element={<SearchBuilds makes={makes} />} />
                 </Routes>
             </div>
