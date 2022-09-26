@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateBuild.css"
 
-function CreateBuildForm({ setDisplayBuildFormClick, makeRef, setNewBuildObject, renderNewBuild }){
+function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDisplayBuildFormClick, closeForm, makeRef, setNewBuildObject, renderNewBuild, }){
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
@@ -32,10 +32,14 @@ function CreateBuildForm({ setDisplayBuildFormClick, makeRef, setNewBuildObject,
             .then((response) => response.json())
             .then((newBuildData) =>{ 
                 renderNewBuild(newBuildData);
-                setNewBuildObject(newBuildObj);
-                setDisplayBuildFormClick(false)
+                setNewBuildObject(newBuildData);
+                setDisplayBuildFormClick(false);
+                setSelectMakeClick(false);
+                setCreateBuildFormClick(false);
             })
     }
+
+
 
 
     return(
@@ -80,7 +84,7 @@ function CreateBuildForm({ setDisplayBuildFormClick, makeRef, setNewBuildObject,
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
-            <button className="CreateBuild-closeForm" onClick={()=>setDisplayBuildFormClick(false)} > Close Form </button>
+            <button className="CreateBuild-closeForm" onClick={()=>closeForm()} > Close Form </button>
         </div>
     )
 }

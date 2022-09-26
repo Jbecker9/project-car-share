@@ -11,20 +11,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = find_user
-        if params[:make_id]
-            unless user.makes.find_by(id: params[:make_id])
-                added_make = Make.find_by(params[:make_id])
-                user.makes << added_make
-                user.makes.order(:id)
-            else
-            end
-            make = user.makes.find_by(id: params[:make_id])
-            new_build = make.builds.create!(build_params)
-            render json: new_build, status: :created
-        else
-            new_build = user.builds.create!(build_params)
-            render json: new_build, status: :created
-        end
+        new_build = user.builds.create!(build_params)
+        render json: new_build, status: :created
     end
 
     def update
@@ -63,6 +51,10 @@ private
     end
 
     def build_params
+        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id)
+    end
+
+    def build_params_with_make
         params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id, make_attributes: [:company_name, :company_image])
     end
 

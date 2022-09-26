@@ -5,8 +5,8 @@ import "../styles/Home.css";
 import CreateBuildForm from "./CreateBuildForm"
 
 
-function UserBuildContainer({ makeRef, setMakeRef, make, makes, renderUpdateBuild, renderRemovedBuild, renderNewBuild, setNewBuildObject }){
-    const [createBuildFormClick, setCreateBuildFormClick] = useState(false)
+function UserBuildContainer({ setCreateBuildFormClick, createBuildFormClick, setSelectMakeClick, setDisplayBuildFormClick, closeForm, makeRef, setMakeRef, make, makes, renderUpdateBuild, renderRemovedBuild, renderNewBuild, setNewBuildObject }){
+    
 
     function renderBuildForm(){
         setMakeRef(make)
@@ -19,7 +19,7 @@ function UserBuildContainer({ makeRef, setMakeRef, make, makes, renderUpdateBuil
             <h1>{make.company_name}</h1>
             <div className="UserBuildContainer-buildContainerDiv">
             { make.builds.map((build) => <UserBuildCard renderRemovedBuild={renderRemovedBuild} renderUpdateBuild={renderUpdateBuild} makes={makes} key={build.id} build={build} />) }
-            { createBuildFormClick ? <CreateBuildForm makeRef={makeRef} make={make} renderNewBuild={renderNewBuild} setNewBuildObject={setNewBuildObject} setCreateBuildFormClick={setCreateBuildFormClick} /> : <button className="Home-renderCreateBuildFormButton" onClick={()=>renderBuildForm()}>Create a New {make.company_name}</button> }
+            { createBuildFormClick ? <CreateBuildForm setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} closeForm={closeForm} makeRef={makeRef} setDisplayBuildFormClick={setDisplayBuildFormClick} setCreateBuildFormClick={setCreateBuildFormClick} /> : <button className="Home-renderCreateBuildFormButton" onClick={()=>renderBuildForm()}>Create a New {make.company_name}</button> }
             </div>
         </div>
     )

@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  resources :builds, only: [:create]
-
   get "/non_user_makes", to: "makes#show"
 
   resources :makes, only: [:index, :create, :destroy] do
