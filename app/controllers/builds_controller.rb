@@ -17,10 +17,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def update
         user = find_user
-        make = find_user_make_error
-        update_build = find_build
-        update_build.update!(build_params)
-        render json: update_build
+        make = user.makes.find_by!(id: params[:make_id])
+        build = make.builds.find_by!(id: params[:id])
+        build.update!(build_params)
+        build.user.makes.sort_by { |make| make.id }
+        render json: build, status: :accepted
     end
 
     def destroy
@@ -37,25 +38,8 @@ private
         User.find_by!(id: session[:user_id])
     end
 
-    def find_user_make_error
-        user = find_user
-        user.makes.find_by!(id: params[:make_id])
-    end
-
-    def find_user_make_no_error
-        user.makes.find_by(id: params[:make_id])
-    end
-
-    def find_build
-        make.builds.find_by!(id: params[:id])
-    end
-
     def build_params
         params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id)
-    end
-
-    def build_params_with_make
-        params.permit(:build_image, :budget, :make_id, :model, :year, :spec, :engine, :horsepower, :id, make_attributes: [:company_name, :company_image])
     end
 
     def render_not_found_response(invalid)

@@ -11,7 +11,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         all_makes = Make.all
         user_makes_id = user.makes.map { |make| make[:id] }
         non_user_makes = all_makes.reject { |make| user_makes_id.include?(make[:id]) }
-        # byebug
         render json: non_user_makes
     end
 
@@ -24,6 +23,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     def destroy
         make = Make.find_by!(id: params[:id])
         make.destroy
+    end
+
+    def sample
+        makes = Make.all
+        make = makes.sample
+        render json: make
     end
 
 private

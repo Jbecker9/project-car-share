@@ -12,10 +12,10 @@ function App() {
       .then((response) => {
         if (response.ok) {
           response.json()
-            .then((user) => setUser(user))
+            .then((userData) => setUser(userData))
         }
       })
-  }, [])
+  }, [setUser])
 
   if (user) {
     return <UserFoundRoutes user={user} setUser={setUser}/>
