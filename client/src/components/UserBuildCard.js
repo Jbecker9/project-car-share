@@ -10,7 +10,9 @@ function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
             method: "DELETE"
         }).then((response)=>response.json())
             .then((deletedBuildMakeData) => renderRemovedBuild(deletedBuildMakeData))
+    // console.log(build)
     }
+
 
     return(
         <div className="UserBuildCard-div" >

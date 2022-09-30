@@ -40,11 +40,8 @@ function UserFoundRoutes({ setUser, user }){
         updateAllUserMakes(updatedBuild)
     }
 
-    function renderRemovedBuild(removedBuild){
-        let newUserState = user
-        console.log(removedBuild)
-        newUserState.makes = removedBuild.makes
-        setUser(newUserState)
+    function renderRemovedBuild(userAfterBuildDelete){
+        setUser(userAfterBuildDelete)
     }
 
     function renderNewMake(newBuild){
