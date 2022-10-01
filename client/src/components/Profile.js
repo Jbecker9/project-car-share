@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import UserBuildContainer from "./UserBuildContainer";
+import UserMakeCard from "./UserMakeCard";
 import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 import "../styles/Home.css"
 import NewMakeForm from "./NewMakeForm";
@@ -39,7 +39,7 @@ function Home({ renderNewMake, renderNewBuild }){
             { selectMakeClick ? <RenderOptionsOrForm displayBuildFormClick={displayBuildFormClick} setDisplayBuildFormClick={setDisplayBuildFormClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} nonUserMakes={nonUserMakes} renderNewBuild={renderNewBuild} /> : <button className="Home-renderCreateBuildFormButton" onClick={(e)=>renderNonUserMakes(e)} > Select an existing Make </button> }
             <h2 className="Home-h2"> Brand new Company? </h2>
             { makeFormClick ? <NewMakeForm setNewBuildObject={setNewBuildObject} renderNewMake={renderNewMake} setMakeFormClick={setMakeFormClick} /> : <button onClick={()=>renderMakeForm()} className="Home-renderCreateBuildFormButton">Add a New Make</button> }
-            { userState.makes.map((make) => <UserBuildContainer setDisplayBuildFormClick={setDisplayBuildFormClick} selectMakeClick={selectMakeClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} make={make} key={make.id} /> )}
+            { userState.makes.map((make) => <UserMakeCard setDisplayBuildFormClick={setDisplayBuildFormClick} selectMakeClick={selectMakeClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} make={make} key={make.id} /> )}
         </div>
     )
 }
