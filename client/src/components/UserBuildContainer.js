@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../styles/UserBuildContainer.css"
 import UserBuildCard from "./UserBuildCard";
 import "../styles/Home.css";
 import CreateBuildForm from "./CreateBuildForm"
+import { UserContext } from "../context/user";
 
 
-function UserBuildContainer({ setCreateBuildFormClick, createBuildFormClick, setSelectMakeClick, setDisplayBuildFormClick, closeForm, makeRef, setMakeRef, make, renderNewBuild, setNewBuildObject }){
+function UserBuildContainer({ setSelectMakeClick, setDisplayBuildFormClick, make, setNewBuildObject }){
+    const { setMakeRef } = useContext(UserContext)
+    const [createBuildFormClick, setCreateBuildFormClick] = useState(false)
 
-    
-
-    function renderBuildForm(){
+    function renderCreateForm(make){
         setMakeRef(make)
         setCreateBuildFormClick(true)
     }
@@ -19,7 +20,7 @@ function UserBuildContainer({ setCreateBuildFormClick, createBuildFormClick, set
             <h1>{make.company_name}</h1>
             <div className="UserBuildContainer-buildContainerDiv">
             { make.builds.map((build) => <UserBuildCard key={build.id} build={build} />) }
-            { createBuildFormClick ? <CreateBuildForm setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} closeForm={closeForm} makeRef={makeRef} setDisplayBuildFormClick={setDisplayBuildFormClick} setCreateBuildFormClick={setCreateBuildFormClick} /> : <button className="Home-renderCreateBuildFormButton" onClick={()=>renderBuildForm()}>Create a New {make.company_name}</button> }
+            { createBuildFormClick ? <CreateBuildForm setCreateBuildFormClick={setCreateBuildFormClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} setDisplayBuildFormClick={setDisplayBuildFormClick} /> : <button className="Home-renderCreateBuildFormButton" onClick={()=>renderCreateForm(make)}>Create a New {make.company_name}</button> }
             </div>
         </div>
     )

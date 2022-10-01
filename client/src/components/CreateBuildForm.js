@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/user";
 import "../styles/CreateBuild.css"
 
-function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDisplayBuildFormClick, closeForm, makeRef, setNewBuildObject, renderNewBuild, }){
+function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDisplayBuildFormClick, setNewBuildObject }){
+    const { setUserState, makeRef } = useContext(UserContext)
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
@@ -31,15 +33,18 @@ function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDispl
         })
             .then((response) => response.json())
             .then((newBuildData) =>{ 
-                renderNewBuild(newBuildData);
-                setNewBuildObject(newBuildData);
+                setUserState(newBuildData);
+                setNewBuildObject(newBuildObj);
                 setDisplayBuildFormClick(false);
                 setSelectMakeClick(false);
                 setCreateBuildFormClick(false);
             })
     }
 
-
+    function closeForm(){
+        setDisplayBuildFormClick(false)
+        setCreateBuildFormClick(false)
+    }
 
 
     return(

@@ -12,7 +12,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     def create
         user = find_user
         new_build = user.builds.create!(build_params)
-        render json: new_build, status: :created
+        render json: user, status: :created
     end
 
     def update

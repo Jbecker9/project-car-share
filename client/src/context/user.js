@@ -4,6 +4,7 @@ const UserContext = React.createContext();
 
 function UserProvider({ children }){
     const [userState, setUserState] = useState(null)
+    const [makeRef, setMakeRef] = useState(null)
 
     useEffect(()=>{
       fetch("/me")
@@ -16,7 +17,7 @@ function UserProvider({ children }){
     }, [])
 
     return(
-        <UserContext.Provider value={{userState, setUserState}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{makeRef, setMakeRef, userState, setUserState}}>{children}</UserContext.Provider>
     )
 }
 
