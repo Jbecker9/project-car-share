@@ -16,7 +16,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = find_user
-        new_make = user.makes.create!(make_params)
+        new_make = user.makes.create!(make_params_with_build)
         render json: new_make
     end
 
@@ -33,8 +33,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
 private
 
-    def make_params
-        params.permit(:company_name, :company_image, builds_attributes: {:build_image, :budget, :model, :year, :spec, :engine, :horsepower})
+    def make_params_with_build
+        params.permit(:company_name, :company_image, builds_attributes: [:build_image, :budget, :model, :year, :spec, :engine, :horsepower])
     end
 
     def find_user

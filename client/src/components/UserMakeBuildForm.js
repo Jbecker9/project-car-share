@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 import "../styles/CreateBuild.css"
 
-function UserMakeBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setNewBuildObject }){
+function UserMakeBuildForm({ setCreateBuildFormClick, setNewBuildObject }){
     const { setUserState, makeRef } = useContext(UserContext)
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
@@ -35,7 +35,6 @@ function UserMakeBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setNew
             .then((newBuildData) =>{ 
                 setUserState(newBuildData);
                 setNewBuildObject(newBuildObj);
-                setSelectMakeClick(false);
                 setCreateBuildFormClick(false);
             })
     }

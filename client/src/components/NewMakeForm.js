@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/user";
 import "../styles/NewMakeForm.css"
 
 function NewMakeForm({ makes, setNewBuildObject, renderNewMake, setMakeFormClick }){
+    const { setUserState } = useContext(UserContext)
     const [newMakeName, setNewMakeName] = useState(null)
     const [newMakeImage, setNewMakeImage] = useState(null)
     const [newBuildImage, setNewBuildImage] = useState("")
@@ -15,32 +17,31 @@ function NewMakeForm({ makes, setNewBuildObject, renderNewMake, setMakeFormClick
 
     function addNewMakeData(e){
         e.preventDefault()
-        const newMakeWithBuildObject = {
-            company_name: newMakeName,
-            company_image: newMakeImage,
-            builds_attributes: {
-                budget: parseInt(newBudget),
-                build_image: newBuildImage,
-                engine: newEngine,
-                horsepower: newHorsePower,
-                model: newModel,
-                spec: newSpec,
-                year: parseInt(newYear)
+        const newBuildNewMakeObject = {
+            budget: parseInt(newBudget),
+            build_image: newBuildImage,
+            engine: newEngine,
+            horsepower: newHorsePower,
+            model: newModel,
+            spec: newSpec,
+            year: parseInt(newYear),
+            make_attributes: {
+                company_name: newMakeName,
+                company_image: newMakeImage,
             }
 
         }
-        // console.log(newMakeObj)
-        fetch(`/makes`, {
+        fetch(`/builds`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(newMakeWithBuildObject)
+            body: JSON.stringify(newBuildNewMakeObject)
         }).then((response)=>response.json())
             .then((newMakeData)=>{ 
-                console.log(newMakeData);
+                setUserState(newMakeData);
                 setMakeFormClick(false);
-                // setNewBuildObject(newMakeData);
+                setNewBuildObject(newBuildNewMakeObject);
             })
     }
 
