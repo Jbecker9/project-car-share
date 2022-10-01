@@ -34,7 +34,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 private
 
     def make_params
-        params.permit(:company_name, :company_image, builds_attributes: [:build_image, :budget, :model, :year, :spec, :engine, :horsepower, :id, :user_id])
+        params.permit(:company_name, :company_image, builds_attributes: {:build_image, :budget, :model, :year, :spec, :engine, :horsepower})
     end
 
     def find_user

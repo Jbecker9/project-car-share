@@ -15,31 +15,32 @@ function NewMakeForm({ makes, setNewBuildObject, renderNewMake, setMakeFormClick
 
     function addNewMakeData(e){
         e.preventDefault()
-        const newBuildWithMakeObj = {
-            budget: newBudget,
-            build_image: newBuildImage,
-            engine: newEngine,
-            horsepower: newHorsePower,
-            model: newModel,
-            spec: newSpec,
-            year: newYear,
-            make_attributes: {
-                company_name: newMakeName,
-                company_image: newMakeImage
+        const newMakeWithBuildObject = {
+            company_name: newMakeName,
+            company_image: newMakeImage,
+            builds_attributes: {
+                budget: parseInt(newBudget),
+                build_image: newBuildImage,
+                engine: newEngine,
+                horsepower: newHorsePower,
+                model: newModel,
+                spec: newSpec,
+                year: parseInt(newYear)
             }
+
         }
         // console.log(newMakeObj)
-        fetch(`/builds`, {
+        fetch(`/makes`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(newBuildWithMakeObj)
+            body: JSON.stringify(newMakeWithBuildObject)
         }).then((response)=>response.json())
             .then((newMakeData)=>{ 
-                renderNewMake(newMakeData);
+                console.log(newMakeData);
                 setMakeFormClick(false);
-                setNewBuildObject(newMakeData);
+                // setNewBuildObject(newMakeData);
             })
     }
 
