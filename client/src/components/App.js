@@ -17,7 +17,10 @@ return(
 export default App;
 
 // TO DO:
-//  - Make New Make Form render from user json response
+//  - Work on 2nd Navbar Route
+//    - Featured Makes
+//    - Popular Makes
+//    - All Makes
 //  - Add a 3rd NavBar Route
 //    - Most Horsepower
 //    - Most Recent Builds

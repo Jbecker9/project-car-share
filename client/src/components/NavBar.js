@@ -35,7 +35,7 @@ function NavBar(){
                     isActive ? activeLinkStyle : linkStyle
                 }
             >
-                All Makes
+                Community Makes
             </NavLink>
             </ul>
             <ul>
