@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/updateBuildForm.css"
 import "../styles/CreateBuild.css"
+import { UserContext } from "../context/user";
 
-function UpdateBuildForm({ build, renderUpdateBuild, setUpdateFormClick }){
-    const [updateBuildImage, setUpdateBuildImage] = useState(build.build_image)
-    const [updateBuildModel, setUpdateBuildModel] = useState(build.model)
-    const [updateBuildYear, setUpdateBuildYear] = useState(build.year)
-    const [updateBuildSpec, setUpdateBuildSpec] = useState(build.spec)
-    const [updateBuildEngine, setUpdateBuildEngine] = useState(build.engine)
-    const [updateBuildHorsepower, setUpdateBuildHorsepower] = useState(build.horsepower)
-    const [updateBuildBudget, setUpdateBuildBudget] = useState(build.budget)
+function UpdateBuildForm({ updateFormBuild, renderUpdateBuild, setUpdateFormBuild }){
+    const { setUserState } = useContext(UserContext)
+    const [updateBuildImage, setUpdateBuildImage] = useState(updateFormBuild.build_image)
+    const [updateBuildModel, setUpdateBuildModel] = useState(updateFormBuild.model)
+    const [updateBuildYear, setUpdateBuildYear] = useState(updateFormBuild.year)
+    const [updateBuildSpec, setUpdateBuildSpec] = useState(updateFormBuild.spec)
+    const [updateBuildEngine, setUpdateBuildEngine] = useState(updateFormBuild.engine)
+    const [updateBuildHorsepower, setUpdateBuildHorsepower] = useState(updateFormBuild.horsepower)
+    const [updateBuildBudget, setUpdateBuildBudget] = useState(updateFormBuild.budget)
     
     function addUpdateBuildData(e){
         e.preventDefault()
@@ -17,21 +19,21 @@ function UpdateBuildForm({ build, renderUpdateBuild, setUpdateFormClick }){
             build_image: updateBuildImage,
             budget: parseInt(updateBuildBudget),
             model: updateBuildModel,
-            year: parseInt(updateBuildYear),
+            year: updateBuildYear,
             spec: updateBuildSpec,
             engine: updateBuildEngine,
             horsepower: updateBuildHorsepower
         }
-        fetch(`makes/${build.make_id}/builds/${build.id}`,{
+        fetch(`makes/${updateFormBuild.make_id}/builds/${updateFormBuild.id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(updateBuildObj)
         }).then((response)=>response.json())
-            .then((updateBuildData)=>{ 
-                renderUpdateBuild(updateBuildData);
-                setUpdateFormClick(false)
+            .then((updatedUserData)=>{ 
+                setUserState(updatedUserData);
+                setUpdateFormBuild(false)
             })
     }
 
@@ -46,36 +48,37 @@ function UpdateBuildForm({ build, renderUpdateBuild, setUpdateFormClick }){
                 <input 
                 onChange={(e) => setUpdateBuildModel(e.target.value)}
                 className="CreateBuild-input"
-                placeholder={build.model} 
+                placeholder={updateFormBuild.model} 
                 />
                 <input 
                 onChange={(e) => setUpdateBuildYear(e.target.value)}
                 className="CreateBuild-input"
-                placeholder={build.year} 
+                placeholder={updateFormBuild.year} 
                 />
                 <input 
                 onChange={(e) => setUpdateBuildSpec(e.target.value)}
                 defaultValue={null}
                 className="CreateBuild-input"
-                placeholder={build.spec} 
+                placeholder={updateFormBuild.spec} 
                 />
                 <input 
                 onChange={(e) => setUpdateBuildEngine(e.target.value)}
                 className="CreateBuild-input"
-                placeholder={build.engine}
+                placeholder={updateFormBuild.engine}
                 />
                 <input 
                 onChange={(e) => setUpdateBuildHorsepower(e.target.value)}
                 className="CreateBuild-input"
-                placeholder={build.horsepower + "hp"}
+                placeholder={updateFormBuild.horsepower + "hp"}
                 />
                 <input 
                 onChange={(e) => setUpdateBuildBudget(e.target.value)}
                 className="CreateBuild-input"
-                placeholder={"$"+build.budget}
+                placeholder={"$"+updateFormBuild.budget}
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
+            <button className="UpdateBuildForm-closeFormButton"> Close Form </button>
         </div>
     )
 }

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/user";
 import '../styles/Login.css'
 
-function LogInForm({ setUser, setSignUpClick, setShowUserCreatedMessage, showUserCreatedMessage }){
+function LogInForm({ setSignUpClick, setShowUserCreatedMessage, showUserCreatedMessage }){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [logInError, setLogInError] = useState(null)
+    const { setUserState } = useContext(UserContext)
 
     function handleLogInSubmit(e){
         e.preventDefault()
@@ -25,7 +27,7 @@ function LogInForm({ setUser, setSignUpClick, setShowUserCreatedMessage, showUse
         } else {
             setLogInError(null)  
             setShowUserCreatedMessage(false)
-            setUser(user)
+            setUserState(user)
         }
     }
 

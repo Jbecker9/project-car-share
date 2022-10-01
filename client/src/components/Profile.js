@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import UserBuildContainer from "./UserBuildContainer";
 import BuildCreatedConfirmed from "./BuildCreatedConfirmed";
 import "../styles/Home.css"
 import NewMakeForm from "./NewMakeForm";
 import RenderOptionsOrForm from "./RenderOptionsOrForm";
+import { UserContext } from "../context/user";
 
-function Home({ renderNewMake, renderNewBuild, user, makes, renderUpdateBuild, renderRemovedBuild }){
+function Home({ renderNewMake, renderNewBuild }){
+    const {userState} = useContext(UserContext)
     const [makeFormClick, setMakeFormClick] = useState(false)
     const [newBuildObject, setNewBuildObject] = useState(null)
     const [selectMakeClick, setSelectMakeClick] = useState(false)
     const [nonUserMakes, setNonUserMakes] = useState(null)
-    const [makeRef, setMakeRef] = useState(user.makes[0])
+    const [makeRef, setMakeRef] = useState(null)
     const [displayBuildFormClick, setDisplayBuildFormClick] = useState(false)
     const [createBuildFormClick, setCreateBuildFormClick] = useState(false)
 
@@ -34,7 +36,7 @@ function Home({ renderNewMake, renderNewBuild, user, makes, renderUpdateBuild, r
     function closeForm(){
         setDisplayBuildFormClick(false)
         setCreateBuildFormClick(false)
-        setMakeRef(nonUserMakes[0])
+        // setMakeRef(nonUserMakes[0])
     }
 
     return(
@@ -43,8 +45,8 @@ function Home({ renderNewMake, renderNewBuild, user, makes, renderUpdateBuild, r
             <h2 className="Home-h2">Company not in your Garage?</h2>
             { selectMakeClick ? <RenderOptionsOrForm setCreateBuildFormClick={setCreateBuildFormClick} displayBuildFormClick={displayBuildFormClick} setDisplayBuildFormClick={setDisplayBuildFormClick} closeForm={closeForm} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} makeRef={makeRef} nonUserMakes={nonUserMakes} setMakeRef={setMakeRef} renderNewBuild={renderNewBuild} /> : <button className="Home-renderCreateBuildFormButton" onClick={(e)=>renderNonUserMakes(e)} > Select an existing Make </button> }
             <h2 className="Home-h2"> Brand new Company? </h2>
-            { makeFormClick ? <NewMakeForm makes={makes} setNewBuildObject={setNewBuildObject} renderNewMake={renderNewMake} setMakeFormClick={setMakeFormClick} /> : <button onClick={()=>renderMakeForm()} className="Home-renderCreateBuildFormButton">Add a New Make</button> }
-            { user.makes.map((make) => <UserBuildContainer closeForm={closeForm} setDisplayBuildFormClick={setDisplayBuildFormClick} createBuildFormClick={createBuildFormClick} setCreateBuildFormClick={setCreateBuildFormClick} selectMakeClick={selectMakeClick} setSelectMakeClick={setSelectMakeClick} makeRef={makeRef} setMakeRef={setMakeRef} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} renderRemovedBuild={renderRemovedBuild} renderUpdateBuild={renderUpdateBuild} makes={makes} make={make} key={make.id} /> )}
+            { makeFormClick ? <NewMakeForm setNewBuildObject={setNewBuildObject} renderNewMake={renderNewMake} setMakeFormClick={setMakeFormClick} /> : <button onClick={()=>renderMakeForm()} className="Home-renderCreateBuildFormButton">Add a New Make</button> }
+            { userState.makes.map((make) => <UserBuildContainer closeForm={closeForm} setDisplayBuildFormClick={setDisplayBuildFormClick} createBuildFormClick={createBuildFormClick} setCreateBuildFormClick={setCreateBuildFormClick} selectMakeClick={selectMakeClick} setSelectMakeClick={setSelectMakeClick} makeRef={makeRef} setMakeRef={setMakeRef} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} make={make} key={make.id} /> )}
         </div>
     )
 }

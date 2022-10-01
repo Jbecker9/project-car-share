@@ -1,27 +1,17 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { UserProvider } from '../context/user';
 import '../styles/App.css';
+import UserCheck from './UserCheck';
 // import LogInSignUpPage from './LogInSignUpPage';
-import LogIn from './LogIn';
-import UserFoundRoutes from './UserFoundRoutes';
+
 
 function App() {
-  const [user, setUser] = useState(null)
-
-  useEffect(()=>{
-    fetch("/me")
-      .then((response) => {
-        if (response.ok) {
-          response.json()
-            .then((userData) => setUser(userData))
-        }
-      })
-  }, [setUser])
-
-  if (user) {
-    return <UserFoundRoutes user={user} setUser={setUser}/>
-  } else {
-    return <LogIn setUser={setUser} user={user}/>
-  }
+ 
+return(
+  <UserProvider>
+    <UserCheck />
+  </UserProvider>
+)
 }
 
 export default App;

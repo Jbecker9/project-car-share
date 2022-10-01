@@ -21,7 +21,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         build = make.builds.find_by!(id: params[:id])
         build.update!(build_params)
         build.user.makes.sort_by { |make| make.id }
-        render json: build, status: :accepted
+        render json: user, status: :accepted
     end
 
     def destroy

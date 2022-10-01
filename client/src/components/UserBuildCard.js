@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/user";
 import "../styles/UserBuildCard.css"
 import UpdateBuildForm from "./UpdateBuildForm";
 
-function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
-    const [updateFormClick, setUpdateFormClick] = useState(false)
+function UserBuildCard({makes, build }){
+    const { setUserState } = useContext(UserContext)
+    const [updateFormBuild, setUpdateFormBuild] = useState(false)
 
     function deleteBuild(){
         fetch(`/makes/${build.make_id}/builds/${build.id}`, {
             method: "DELETE"
         }).then((response)=>response.json())
-            .then((deletedBuildMakeData) => renderRemovedBuild(deletedBuildMakeData))
+            .then((deletedBuildMakeData) => setUserState(deletedBuildMakeData))
     // console.log(build)
     }
 
@@ -20,9 +22,9 @@ function UserBuildCard({ build, makes, renderUpdateBuild, renderRemovedBuild }){
             <h3>Budget: ${build.budget} </h3>
             <h3> {build.horsepower}hp {build.engine} </h3>
             <img src={build.build_image} alt="User Vehicle" className="UserBuildCard-img" />
-            <button onClick={()=>setUpdateFormClick(!updateFormClick)} className="UserBuildCard-updateButton"> Update Build </button>
+            <button onClick={()=>setUpdateFormBuild(build)} className="UserBuildCard-updateButton"> Update Build </button>
             <button onClick={()=>deleteBuild()} className="UserBuildCard-deleteButton"> Delete Build </button>
-            { updateFormClick ? <UpdateBuildForm renderUpdateBuild={renderUpdateBuild} makes={makes} build={build} setUpdateFormClick={setUpdateFormClick} /> : null }
+            { updateFormBuild ? <UpdateBuildForm makes={makes} setUpdateFormBuild={setUpdateFormBuild} updateFormBuild={updateFormBuild} /> : null }
         </div>
     )
 }

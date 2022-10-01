@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/user";
 import "../styles/NavBar.css"
 
-function NavBar({ setUser }){
+function NavBar(){
+    const { setUser } = useContext(UserContext)
 
     function handleLogOut(){
         fetch("/logout",{
