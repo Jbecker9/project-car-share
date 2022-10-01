@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 import "../styles/CreateBuild.css"
 
-function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDisplayBuildFormClick, setNewBuildObject }){
+function NonExistingMakeBuildForm({ setSelectMakeClick, setDisplayBuildFormClick, setNewBuildObject }){
     const { setUserState, makeRef } = useContext(UserContext)
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
@@ -32,18 +32,12 @@ function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDispl
             body: JSON.stringify(newBuildObj)
         })
             .then((response) => response.json())
-            .then((newBuildData) =>{ 
-                setUserState(newBuildData);
+            .then((newBuildUserData) =>{ 
+                setUserState(newBuildUserData);
                 setNewBuildObject(newBuildObj);
                 setDisplayBuildFormClick(false);
                 setSelectMakeClick(false);
-                setCreateBuildFormClick(false);
             })
-    }
-
-    function closeForm(){
-        setDisplayBuildFormClick(false)
-        setCreateBuildFormClick(false)
     }
 
 
@@ -89,9 +83,9 @@ function CreateBuildForm({ setCreateBuildFormClick, setSelectMakeClick, setDispl
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
-            <button className="CreateBuild-closeForm" onClick={()=>closeForm()} > Close Form </button>
+            <button className="CreateBuild-closeForm" onClick={()=>setDisplayBuildFormClick(false)} > Close Form </button>
         </div>
     )
 }
 
-export default CreateBuildForm
+export default NonExistingMakeBuildForm

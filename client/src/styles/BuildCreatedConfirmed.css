@@ -6,7 +6,7 @@
     border-radius: 5px;
     width: 95%;
     color: black;
-    position: absolute;
+    position: fixed;
     text-align: center;
     top: 50%;
     left: 48.5%;

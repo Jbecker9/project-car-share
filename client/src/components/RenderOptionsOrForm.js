@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/SelectMakeForBuildForm.css";
-import CreateBuildForm from "./CreateBuildForm";
+import NonUserMakeBuildForm from "./NonUserMakeBuildForm";
 import SelectMakeOptions from "./SelectMakeOptions";
 
-function RenderOptionsOrForm({ setCreateBuildFormClick, closeForm, setSelectMakeClick, setDisplayBuildFormClick, displayBuildFormClick, setNewBuildObject, renderNewBuild, renderBuildForm, nonUserMakes }){
+function RenderOptionsOrForm({ setSelectMakeClick, setNewBuildObject, nonUserMakes }){
+    const [displayBuildFormClick, setDisplayBuildFormClick] = useState(false)
     
-    
-
-
     return(
         <div>
-            { displayBuildFormClick ? <CreateBuildForm setCreateBuildFormClick={setCreateBuildFormClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} closeForm={closeForm} renderBuildForm={renderBuildForm} setDisplayBuildFormClick={setDisplayBuildFormClick} /> : <SelectMakeOptions setDisplayBuildFormClick={setDisplayBuildFormClick} nonUserMakes={nonUserMakes} /> }
+            { displayBuildFormClick ? <NonUserMakeBuildForm setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} setDisplayBuildFormClick={setDisplayBuildFormClick} /> : <SelectMakeOptions setDisplayBuildFormClick={setDisplayBuildFormClick} nonUserMakes={nonUserMakes} /> }
         </div>
     )
 }

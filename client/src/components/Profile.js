@@ -6,13 +6,13 @@ import NewMakeForm from "./NewMakeForm";
 import RenderOptionsOrForm from "./RenderOptionsOrForm";
 import { UserContext } from "../context/user";
 
-function Home({ renderNewMake, renderNewBuild }){
+function Profile(){
     const {userState, setMakeRef} = useContext(UserContext)
     const [makeFormClick, setMakeFormClick] = useState(false)
     const [newBuildObject, setNewBuildObject] = useState(null)
     const [selectMakeClick, setSelectMakeClick] = useState(false)
     const [nonUserMakes, setNonUserMakes] = useState(null)
-    const [displayBuildFormClick, setDisplayBuildFormClick] = useState(false)
+    
     
 
     function renderMakeForm(){
@@ -36,12 +36,12 @@ function Home({ renderNewMake, renderNewBuild }){
         <div>
             { newBuildObject ? <BuildCreatedConfirmed setNewBuildObject={setNewBuildObject} newBuildObject={newBuildObject}/> : null }
             <h2 className="Home-h2">Company not in your Garage?</h2>
-            { selectMakeClick ? <RenderOptionsOrForm displayBuildFormClick={displayBuildFormClick} setDisplayBuildFormClick={setDisplayBuildFormClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} nonUserMakes={nonUserMakes} renderNewBuild={renderNewBuild} /> : <button className="Home-renderCreateBuildFormButton" onClick={(e)=>renderNonUserMakes(e)} > Select an existing Make </button> }
+            { selectMakeClick ? <RenderOptionsOrForm setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} nonUserMakes={nonUserMakes} /> : <button className="Home-renderCreateBuildFormButton" onClick={(e)=>renderNonUserMakes(e)} > Select an existing Make </button> }
             <h2 className="Home-h2"> Brand new Company? </h2>
-            { makeFormClick ? <NewMakeForm setNewBuildObject={setNewBuildObject} renderNewMake={renderNewMake} setMakeFormClick={setMakeFormClick} /> : <button onClick={()=>renderMakeForm()} className="Home-renderCreateBuildFormButton">Add a New Make</button> }
-            { userState.makes.map((make) => <UserMakeCard setDisplayBuildFormClick={setDisplayBuildFormClick} selectMakeClick={selectMakeClick} setSelectMakeClick={setSelectMakeClick} setNewBuildObject={setNewBuildObject} renderNewBuild={renderNewBuild} make={make} key={make.id} /> )}
+            { makeFormClick ? <NewMakeForm setNewBuildObject={setNewBuildObject} setMakeFormClick={setMakeFormClick} /> : <button onClick={()=>renderMakeForm()} className="Home-renderCreateBuildFormButton">Add a New Make</button> }
+            { userState.makes.map((make) => <UserMakeCard setNewBuildObject={setNewBuildObject} make={make} key={make.id} /> )}
         </div>
     )
 }
 
-export default Home
+export default Profile

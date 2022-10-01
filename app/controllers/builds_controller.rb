@@ -4,7 +4,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
         user = find_user
-        make = Make.find_by!(id: params[:make_id])
+        make = user.makes.find_by!(id: params[:make_id])
         builds = make.builds
         render json: builds
     end
@@ -20,7 +20,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         make = user.makes.find_by!(id: params[:make_id])
         build = make.builds.find_by!(id: params[:id])
         build.update!(build_params)
-        build.user.makes.sort_by { |make| make.id }
         render json: user, status: :accepted
     end
 
