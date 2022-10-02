@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get "/non_user_makes", to: "makes#show"
   get "/sample_make", to: "makes#sample"
+  get "/popular_makes", to: "makes#popular"
 
   resources :builds, only: [:create]
 

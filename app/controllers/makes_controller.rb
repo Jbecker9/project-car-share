@@ -3,7 +3,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
         makes = Make.all
-        render json: makes
+        render json: makes, include: ['builds', 'builds.user']
     end
 
     def show
@@ -29,6 +29,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         makes = Make.all
         make = makes.sample
         render json: make
+    end
+
+    def popular
+        makes = Make.all
+        popular_makes = makes.sort_by { |make| make.builds.length }.reverse
+        render json: popular_makes.take(5), include: ['builds', 'builds.user']
     end
 
 private

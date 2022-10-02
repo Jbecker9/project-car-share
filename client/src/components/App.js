@@ -17,10 +17,6 @@ return(
 export default App;
 
 // TO DO:
-//  - Work on 2nd Navbar Route
-//    - Featured Makes
-//    - Popular Makes
-//    - All Makes
 //  - Add a 3rd NavBar Route
 //    - Most Horsepower
 //    - Most Recent Builds

@@ -35,3 +35,10 @@
     border-radius: 15px;
     cursor: pointer;
 }
+
+.userBuildContainer-cardImage{
+    width: 25%;
+    height: 100%;
+    position: relative;
+    /* border-radius: 5px; */
+}

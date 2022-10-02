@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../styles/SearchBuilds.css"
+import AllMakesContainer from "./AllMakesContainer";
 import CommunityMakesFilterButtons from "./CommunityMakesFilterButtons";
+import FeaturedMakeCard from "./FeaturedMakeCard";
+import PopularMakesContainer from "./PopularMakesContainer";
 
 
 function CommunityMakes(){
-    const [featuredMakes, setFeaturedMakes] = useState(null)
+    const [featuredMake, setFeaturedMake] = useState(null)
     const [popularMakes, setPopularMakes] = useState(null)
     const [allMakes, setAllMakes] = useState(null)
 
@@ -12,7 +15,10 @@ function CommunityMakes(){
 
     return(
             <div className="SearchBuilds-searchDiv">
-                <CommunityMakesFilterButtons setFeaturedMakes={setFeaturedMakes} setPopularMakes={setPopularMakes} setAllMakes={setAllMakes} />
+                <CommunityMakesFilterButtons setFeaturedMake={setFeaturedMake} setPopularMakes={setPopularMakes} setAllMakes={setAllMakes} />
+                { featuredMake ? <FeaturedMakeCard featuredMake={featuredMake} /> : null }
+                { popularMakes ? <PopularMakesContainer popularMakes={popularMakes} /> : null }
+                { allMakes ? <AllMakesContainer allMakes={allMakes} /> : null }
             </div>
     )
 }
