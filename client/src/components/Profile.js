@@ -12,6 +12,7 @@ function Profile(){
     const [newBuildObject, setNewBuildObject] = useState(null)
     const [selectMakeClick, setSelectMakeClick] = useState(false)
     const [nonUserMakes, setNonUserMakes] = useState(null)
+    console.log(userState)
     
     
 
