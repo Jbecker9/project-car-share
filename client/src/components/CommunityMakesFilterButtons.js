@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/CommunityMakes.css"
 
 function CommunityMakesFilterButtons({ setFeaturedMake, setPopularMakes, setAllMakes }){
-
+    
     function renderFeaturedMakes(e){
         e.preventDefault()
         fetch("/featured_make")
@@ -38,7 +38,7 @@ function CommunityMakesFilterButtons({ setFeaturedMake, setPopularMakes, setAllM
 
     return(
         <div>
-            <button className="CommunityMakes-button" onClick={(e)=>renderFeaturedMakes(e)} > Featured Makes </button>
+            <button className="CommunityMakes-button" onClick={(e)=>renderFeaturedMakes(e)} > Featured Make </button>
             <button className="CommunityMakes-button" onClick={(e)=>renderPopularMakes(e)} > Popular Makes </button>
             <button className="CommunityMakes-button" onClick={(e)=>renderAllMakes(e)} > All Makes </button>
         </div>

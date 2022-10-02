@@ -4,12 +4,19 @@ import { UserContext } from "../context/user";
 import "../styles/NavBar.css"
 
 function NavBar(){
-    const { setUserState } = useContext(UserContext)
+    const { setUserState, setCommunityNavRef } = useContext(UserContext)
 
     function handleLogOut(){
         fetch("/logout",{
             method: "DELETE",
         }).then(()=> setUserState(null))
+    }
+
+    function renderFeaturedMakes(){
+        fetch("/featured_make")
+            .then((response)=>response.json())
+            .then((sampleData)=>
+                setCommunityNavRef(sampleData))
     }
 
     const activeLinkStyle = "NavBar-NavLinksActive"
@@ -34,8 +41,20 @@ function NavBar(){
                 className={({ isActive }) => 
                     isActive ? activeLinkStyle : linkStyle
                 }
+                onClick={()=>renderFeaturedMakes()}
             >
                 Community Makes
+            </NavLink>
+            </ul>
+            <ul>
+            <NavLink
+                to="/builds"
+                className={({ isActive }) => 
+                    isActive ? activeLinkStyle : linkStyle
+                }
+                activestyle={{backGround:"#2ecc71"}}
+            >
+                Commuity Builds
             </NavLink>
             </ul>
             <ul>

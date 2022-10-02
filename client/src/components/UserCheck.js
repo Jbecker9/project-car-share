@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { UserContext } from '../context/user';
 import '../styles/App.css';
 import LogIn from './LogIn';
-import Header from './Header';
+import NavRoutes from './NavRoutes';
 
 function UserCheck() {
     const {userState} = useContext(UserContext)
@@ -10,7 +10,7 @@ function UserCheck() {
     if (!userState) {
         return <LogIn />
     } else {
-        return <Header />
+        return <NavRoutes />
     }
 }
 

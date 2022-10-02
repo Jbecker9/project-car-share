@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/user";
 import "../styles/SearchBuilds.css"
 import AllMakesContainer from "./AllMakesContainer";
 import CommunityMakesFilterButtons from "./CommunityMakesFilterButtons";
@@ -7,7 +8,8 @@ import PopularMakesContainer from "./PopularMakesContainer";
 
 
 function CommunityMakes(){
-    const [featuredMake, setFeaturedMake] = useState(null)
+    const { communityNavRef } = useContext(UserContext)
+    const [featuredMake, setFeaturedMake] = useState(communityNavRef)
     const [popularMakes, setPopularMakes] = useState(null)
     const [allMakes, setAllMakes] = useState(null)
 

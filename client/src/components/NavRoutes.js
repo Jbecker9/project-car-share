@@ -3,8 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import CommunityMakes from "./CommunityMakes";
 import Profile from "./Profile";
 import NavBar from "./NavBar";
+import CommunityBuilds from "./CommunityBuilds";
 
-function Header(){
+function NavRoutes(){
 
     return(
         <div>
@@ -15,10 +16,11 @@ function Header(){
                 <Routes>
                     <Route path='/' element={<Profile />} />
                     <Route path='/makes' element={<CommunityMakes />} />
+                    <Route path='/builds' element={<CommunityBuilds />} />
                 </Routes>
             </div>
         </div>
     )
 }
 
-export default Header
+export default NavRoutes
