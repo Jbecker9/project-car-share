@@ -25,10 +25,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         make.destroy
     end
 
-    def sample
+    def featured
         makes = Make.all
         make = makes.sample
-        render json: make
+        render json: make, include: ['builds', 'builds.user']
     end
 
     def popular

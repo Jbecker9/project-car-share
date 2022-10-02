@@ -15,6 +15,8 @@ function UserMakeCard({ make, setNewBuildObject }){
         setCreateBuildFormClick(true)
     }
 
+    console.log(make)
+
     return(
         <div className="UserBuildContainer-div" >
             <h1>{make.company_name}</h1>

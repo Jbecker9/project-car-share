@@ -4,12 +4,12 @@ import { UserContext } from "../context/user";
 import "../styles/NavBar.css"
 
 function NavBar(){
-    const { setUser } = useContext(UserContext)
+    const { setUserState } = useContext(UserContext)
 
     function handleLogOut(){
         fetch("/logout",{
             method: "DELETE",
-        }).then(()=> setUser(null))
+        }).then(()=> setUserState(null))
     }
 
     const activeLinkStyle = "NavBar-NavLinksActive"

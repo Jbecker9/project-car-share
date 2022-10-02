@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/non_user_makes", to: "makes#show"
-  get "/sample_make", to: "makes#sample"
+  get "/featured_make", to: "makes#featured"
   get "/popular_makes", to: "makes#popular"
 
   resources :builds, only: [:create]

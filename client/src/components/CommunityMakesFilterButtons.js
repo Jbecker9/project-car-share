@@ -5,7 +5,7 @@ function CommunityMakesFilterButtons({ setFeaturedMake, setPopularMakes, setAllM
 
     function renderFeaturedMakes(e){
         e.preventDefault()
-        fetch("/sample_make")
+        fetch("/featured_make")
             .then((response)=>response.json())
             .then((sampleData)=>{
                 setPopularMakes(null);
