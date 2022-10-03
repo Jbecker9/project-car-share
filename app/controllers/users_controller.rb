@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     
     def create
         user = User.create!(user_params)
-        # session[:user_id] = user.id
         render json: user, status: :created
     end
 
@@ -19,12 +18,6 @@ class UsersController < ApplicationController
         user.destroy
         session.delete :user_id
     end
-
-    def index
-        users = User.all
-        render json: users
-    end
-
 
 private
 

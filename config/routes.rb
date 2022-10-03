@@ -15,8 +15,8 @@ Rails.application.routes.draw do
 
   resources :builds, only: [:create]
 
-  resources :makes, only: [:index, :create, :destroy] do
-    resources :builds, only: [:index, :create, :update, :destroy]
+  resources :makes, only: [:index, :create] do
+    resources :builds, only: [:create, :update, :destroy]
   end
   
   # Routing logic: fallback requests for React Router.

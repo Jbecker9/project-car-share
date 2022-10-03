@@ -20,11 +20,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: new_make
     end
 
-    def destroy
-        make = Make.find_by!(id: params[:id])
-        make.destroy
-    end
-
     def featured
         makes = Make.all
         make = makes.sample
