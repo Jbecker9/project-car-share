@@ -1,5 +1,6 @@
 .BuildCreatedConfirmed-div{
     margin: 5px;
+    display: flex;
     background-color: #c3c7d2;
     border-style: outset;
     border-color: black;
