@@ -1,12 +1,10 @@
 .BuildCreatedConfirmed-div{
     margin: 5px;
-    display: inline-block;
     background-color: #c3c7d2;
     border-style: outset;
     border-color: black;
     border-radius: 5px;
     width: 95%;
-    height: auto;
     color: black;
     position: fixed;
     text-align: center;
@@ -16,8 +14,7 @@
 }
 
 .BuildCreatedConfirmed-img{
-    width: 75%;
-    height: auto;
+    width: 50%;
     border-radius: 5px;
 }
 
