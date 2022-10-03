@@ -3,9 +3,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
-        user = find_user
-        make = user.makes.find_by!(id: params[:make_id])
-        builds = make.builds
+        builds = Build.all
         render json: builds
     end
 
@@ -29,6 +27,18 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         deleted_build = make.builds.find_by!(id: params[:id])
         deleted_build.destroy
         render json: user
+    end
+
+    def fastest
+        builds = Build.all
+        fastest_builds = builds.order(horsepower: :desc)
+        render json: fastest_builds
+    end
+
+    def budget
+        builds = Build.all
+        builds_by_budget = builds.order(budget: :desc)
+        render json: builds_by_budget
     end
         
 private

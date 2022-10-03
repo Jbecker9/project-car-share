@@ -1,0 +1,16 @@
+.CommunityBuildFilterButtons-div{
+    position: relative;
+    text-align: center;
+}
+
+.CommunityBuildFilterButtons-button{
+    background: #3498db;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 5px;
+    width: 95%;
+    color: black;
+    border-radius: 15px;
+    cursor: pointer;
+}

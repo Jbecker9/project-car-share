@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get "/featured_make", to: "makes#featured"
   get "/popular_makes", to: "makes#popular"
 
+  get "/fastest_builds", to: "builds#fastest"
+  get "/highest_budgets", to: "builds#budget"
+
   resources :builds, only: [:create]
 
   resources :makes, only: [:index, :create, :destroy] do

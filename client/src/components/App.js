@@ -15,10 +15,3 @@ return(
 }
 
 export default App;
-
-// TO DO:
-//  - Add a 3rd NavBar Route
-//    - Most Horsepower
-//    - Most Recent Builds
-//    - Highest/Lowest Budget
-//    - By Year
