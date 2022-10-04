@@ -4,7 +4,7 @@ import { UserContext } from "../context/user";
 import "../styles/NavBar.css"
 
 function NavBar(){
-    const { setUserState, setCommunityNavRef } = useContext(UserContext)
+    const { setUserState, userState, setCommunityNavRef } = useContext(UserContext)
 
     function handleLogOut(){
         fetch("/logout",{
@@ -24,6 +24,7 @@ function NavBar(){
 
     return(
         <div className="NavBar-div">
+            <h1> Projectcar Garage </h1>
             <ul>
             <NavLink
                 to="/"
@@ -58,7 +59,7 @@ function NavBar(){
             </NavLink>
             </ul>
             <ul>
-            <button className="NavBar-logOut" onClick={() => handleLogOut()}> Log Out </button>
+            <button className="NavBar-logOut" onClick={() => handleLogOut()}> Log Out {userState.username} </button>
             </ul>
         </div>
     )
