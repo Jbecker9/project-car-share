@@ -24,7 +24,7 @@ function NavBar(){
 
     return(
         <div className="NavBar-div">
-            <h1> Projectcar Garage </h1>
+            <h1 className="NavBar-h1"> Projectcar Garage </h1>
             <ul>
             <NavLink
                 to="/"

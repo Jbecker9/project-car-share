@@ -81,3 +81,7 @@ body {
 .LogIn-signUpButton:hover {
     background-color: #2ecc71;
 }
+
+.Login-h1{
+    text-align: center;
+}

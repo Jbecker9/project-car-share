@@ -2,11 +2,6 @@ class BuildsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-    def index
-        builds = Build.all
-        render json: builds
-    end
-
     def create
         user = find_user
         new_build = user.builds.create!(build_params)
