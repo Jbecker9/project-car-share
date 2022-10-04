@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 import "../styles/NewMakeForm.css"
 
-function NewMakeForm({ makes, setNewBuildObject, renderNewMake, setMakeFormClick }){
+function NewMakeForm({ setNewBuildObject, setMakeFormClick }){
     const { setUserState } = useContext(UserContext)
     const [newMakeName, setNewMakeName] = useState(null)
     const [newMakeImage, setNewMakeImage] = useState(null)
