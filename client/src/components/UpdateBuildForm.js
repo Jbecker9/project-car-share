@@ -78,7 +78,7 @@ function UpdateBuildForm({ updateFormBuild, renderUpdateBuild, setUpdateFormBuil
                 />
                 <button className="CreateBuild-submit"> Submit Build </button>
             </form>
-            <button className="UpdateBuildForm-closeFormButton"> Close Form </button>
+            <button className="UpdateBuildForm-closeFormButton" onClick={()=>setUpdateFormBuild(false)}> Close Form </button>
         </div>
     )
 }
