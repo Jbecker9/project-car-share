@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/user";
 import "../styles/NewBuildForm.css"
 
 function NewBuildForm({ setNewBuildObject, renderNewBuild, buildFormClickMake, setBuildFormClickMake }){
+    const { userState } = useContext(UserContext)
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
@@ -22,7 +24,7 @@ function NewBuildForm({ setNewBuildObject, renderNewBuild, buildFormClickMake, s
             engine: newEngine,
             horsepower: newHorsePower
         }
-        fetch(`/builds`, {
+        fetch(`users/${userState.id}/builds`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

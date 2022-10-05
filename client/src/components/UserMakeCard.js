@@ -3,7 +3,7 @@ import "../styles/UserBuildContainer.css"
 import "../styles/Home.css";
 import UserMakeBuildForm from "./UserMakeBuildForm"
 import { UserContext } from "../context/user";
-import UserBuildCard from "./UserBuildCard";
+import UserBuildContainer from "./UserBuildContainer";
 
 
 function UserMakeCard({ make, setNewBuildObject }){
@@ -19,7 +19,7 @@ function UserMakeCard({ make, setNewBuildObject }){
         <div className="UserBuildContainer-div" >
             <h1>{make.company_name}</h1>
             <div className="UserBuildContainer-buildContainerDiv">
-            { make.builds.map((build) => <UserBuildCard key={build.id} build={build} />) }
+            { make.builds.map((build) => <UserBuildContainer key={build.id} build={build} />) }
             { createBuildFormClick ? <UserMakeBuildForm setCreateBuildFormClick={setCreateBuildFormClick} setNewBuildObject={setNewBuildObject} /> : <button className="Home-renderCreateBuildFormButton" onClick={()=>renderCreateForm(make)}>Create a New {make.company_name}</button> }
             </div>
         </div>

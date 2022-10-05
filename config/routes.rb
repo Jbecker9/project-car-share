@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   get "/fastest_builds", to: "builds#fastest"
   get "/highest_budgets", to: "builds#budget"
 
-  resources :builds, only: [:create]
+  resources :makes, only: [:index]
 
-  resources :makes, only: [:index, :create] do
+  resources :users, except: [:index, :show, :create, :update, :destroy] do
     resources :builds, only: [:create, :update, :destroy]
   end
   

@@ -12,7 +12,6 @@ function CommunityMakes(){
     const [featuredMake, setFeaturedMake] = useState(communityNavRef)
     const [popularMakes, setPopularMakes] = useState(null)
     const [allMakes, setAllMakes] = useState(null)
-    const [matchMakesClick, setMatchMakesClick] = useState(null)
 
     function renderMatchMakes(e){
         e.preventDefault()

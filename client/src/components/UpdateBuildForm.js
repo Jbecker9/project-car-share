@@ -4,7 +4,7 @@ import "../styles/CreateBuild.css"
 import { UserContext } from "../context/user";
 
 function UpdateBuildForm({ updateFormBuild, renderUpdateBuild, setUpdateFormBuild }){
-    const { setUserState } = useContext(UserContext)
+    const { setUserState, userState } = useContext(UserContext)
     const [updateBuildImage, setUpdateBuildImage] = useState(updateFormBuild.build_image)
     const [updateBuildModel, setUpdateBuildModel] = useState(updateFormBuild.model)
     const [updateBuildYear, setUpdateBuildYear] = useState(updateFormBuild.year)
@@ -24,7 +24,7 @@ function UpdateBuildForm({ updateFormBuild, renderUpdateBuild, setUpdateFormBuil
             engine: updateBuildEngine,
             horsepower: updateBuildHorsepower
         }
-        fetch(`makes/${updateFormBuild.make_id}/builds/${updateFormBuild.id}`,{
+        fetch(`users/${userState.id}/builds/${updateFormBuild.id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

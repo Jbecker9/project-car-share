@@ -1,6 +1,8 @@
 class BuildsController < ApplicationController
-rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    before_action :authorize
+    skip_before_action :authorize, only: [:fastest, :budget]
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = find_user
@@ -10,17 +12,15 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def update
         user = find_user
-        make = user.makes.find_by!(id: params[:make_id])
-        build = make.builds.find_by!(id: params[:id])
+        build = user.builds.find_by!(id: params[:id])
         build.update!(build_params)
         render json: user, status: :accepted
     end
 
     def destroy
         user = find_user
-        make = user.makes.find_by!(id: params[:make_id])
-        deleted_build = make.builds.find_by!(id: params[:id])
-        deleted_build.destroy
+        build = user.builds.find_by!(id: params[:id])
+        build.destroy
         render json: user
     end
 
@@ -52,5 +52,9 @@ private
 
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid }, status: :unprocessable_entity
+    end
+
+    def authorize
+        return render json: { error: "Not Authorized" }, status: :unauthorized unless session.include? (:user_id)
     end
 end

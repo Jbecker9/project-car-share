@@ -4,11 +4,11 @@ import "../styles/UserBuildCard.css"
 import UpdateBuildForm from "./UpdateBuildForm";
 
 function UserBuildCard({makes, build }){
-    const { setUserState } = useContext(UserContext)
+    const { setUserState, userState } = useContext(UserContext)
     const [updateFormBuild, setUpdateFormBuild] = useState(false)
 
     function deleteBuild(){
-        fetch(`/makes/${build.make_id}/builds/${build.id}`, {
+        fetch(`/users/${userState.id}/builds/${build.id}`, {
             method: "DELETE"
         }).then((response)=>response.json())
             .then((deletedBuildMakeData) => setUserState(deletedBuildMakeData))
