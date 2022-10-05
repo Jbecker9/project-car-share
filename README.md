@@ -6,9 +6,34 @@
 
   - Log In to see the unique builds from around the world.
 
+
+## Installation
+
+  - The dependencies for this application are located in the package.json and Gemfile. Make sure the specified versions are installed and used on your local machine.
+
+  - Fork and clone this repository from github
+  ```console
+    $ git clone git@github.com:Jbecker9/project-car-share.git
+    $ cd project-car-share
+    $ bundle install
+    $ npm install --prefix client
+  ```
+  - For the front-end to work properly, the back-end servers must be started first.
+
+  - For the back-end ( http://localhost:3000 )
+    ```console
+     $ rails s
+    ```
+  
+  - For the front-end ( http://localhost:4000 )
+    ```console
+    $ npm start --prefix client
+    ```
+
 ## Instructions
 
   - When first logged in, the user will be directed to their profile page.
+
 
 ### Profile Nav (User Garage)
 
@@ -30,6 +55,7 @@
 
   - Under the vehicle cards, is a create a new vehicle button of the specified make. This button opens a form simillar to the update and existing make forms, as well as providing a confirmation of the newly created vehicle.
 
+
   ## Community Makes Nav
 
   - On the Community Makes Nav, you will see three buttons, each a filter of the community makes. 
@@ -39,6 +65,7 @@
   - The Popular makes button shows the top 5 makes with the most user builds.
 
   - The All makes button shows a card for every make, where the user can click on a specific make to reveal all of its builds.
+
 
   ## Community Builds Nav
 
