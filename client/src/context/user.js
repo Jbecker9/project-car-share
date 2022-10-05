@@ -17,6 +17,8 @@ function UserProvider({ children }){
         })
     }, [])
 
+    console.log(userState)
+
     return(
         <UserContext.Provider value={{communityNavRef, setCommunityNavRef, makeRef, setMakeRef, userState, setUserState}}>{children}</UserContext.Provider>
     )

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/non_user_makes", to: "makes#show"
   get "/featured_make", to: "makes#featured"
   get "/popular_makes", to: "makes#popular"
+  get "match_makes", to: "makes#match"
 
   get "/fastest_builds", to: "builds#fastest"
   get "/highest_budgets", to: "builds#budget"

@@ -61,6 +61,7 @@ function NavBar(){
             <ul>
             <button className="NavBar-logOut" onClick={() => handleLogOut()}> Log Out {userState.username} </button>
             </ul>
+            
         </div>
     )
 }

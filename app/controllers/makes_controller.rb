@@ -32,6 +32,15 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: popular_makes.take(5), include: ['builds', 'builds.user']
     end
 
+    #show all of the makes with first letter == "a"
+    def match
+        makes = Make.all
+        # each make, reject every make != "a"
+        makes_name = makes.pluck(:company_name)
+        a_makes = makes_name.select { |name| name.include?("a") }
+        render json: a_makes
+    end
+
 private
 
     def make_params_with_build

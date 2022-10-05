@@ -12,6 +12,14 @@ function CommunityMakes(){
     const [featuredMake, setFeaturedMake] = useState(communityNavRef)
     const [popularMakes, setPopularMakes] = useState(null)
     const [allMakes, setAllMakes] = useState(null)
+    const [matchMakesClick, setMatchMakesClick] = useState(null)
+
+    function renderMatchMakes(e){
+        e.preventDefault()
+        fetch("/match_makes")
+            .then((r)=>r.json())
+            .then((matchMakesData)=>console.log(matchMakesData))
+    }
 
 
 
@@ -21,6 +29,7 @@ function CommunityMakes(){
                 { featuredMake ? <FeaturedMakeCard featuredMake={featuredMake} /> : null }
                 { popularMakes ? <PopularMakesContainer popularMakes={popularMakes} /> : null }
                 { allMakes ? <AllMakesContainer allMakes={allMakes} /> : null }
+                <button onClick={(e)=>renderMatchMakes(e)}> match makes </button>
             </div>
     )
 }
