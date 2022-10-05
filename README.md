@@ -17,6 +17,8 @@
     $ cd project-car-share
     $ bundle install
     $ npm install --prefix client
+    $ rails db:migrate
+    $ rails db:seed
   ```
   - For the front-end to work properly, the back-end servers must be started first.
 

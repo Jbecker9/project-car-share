@@ -11,7 +11,10 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by!(id: session[:user_id])
-        render json: user, include: :makes 
+        new_user = user.makes.each do |make|
+            make.builds.where(user_id: session[:user_id])
+        end
+        render json: user
     end
 
     def destroy
@@ -33,6 +36,10 @@ private
 
     def render_not_found_response(error)
         render json: { errors: error }, status: :not_found
+    end
+
+    def user_only_builds
+        self.builds.select {|build| build.id == session[:user_id]}
     end
 
     def authorize

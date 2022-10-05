@@ -16,7 +16,6 @@ function UserProvider({ children }){
           }
         })
     }, [])
-
     console.log(userState)
 
     return(
