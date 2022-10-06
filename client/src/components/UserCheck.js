@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../context/user';
 import '../styles/App.css';
 import LogIn from './LogIn';
 import NavRoutes from './NavRoutes';
 
 function UserCheck() {
-    const [userState, setUserState] = useState(null)
+    const { userState } = useContext(UserContext)
 
-    useEffect(()=>{
-        fetch("/me")
-          .then((response) => {
-            if (response.ok) {
-              response.json()
-                .then((userData) => setUserState(userData))
-            }
-          })
-      }, [])
 
     if (!userState) {
         return <LogIn />
     } else {
-        return <NavRoutes userState={userState} setUserState={setUserState} />
+        return <NavRoutes />
     }
 }
 
