@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorize
-    skip_before_action :authorize, only: [:create, :show]
+    skip_before_action :authorize, only: [:create, :show, :show_user_builds]
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by!(id: session[:user_id])
-        # user.makes.includes(:builds).where(build: {user_id: session[:user_id]})
+        user.makes.joins(:builds).where(build: {user_id: session[:user_id]})
         # byebug
         render json: user
     end
@@ -21,6 +21,12 @@ class UsersController < ApplicationController
         user.builds.destroy
         user.destroy
         session.delete :user_id
+    end
+
+    def show_user_builds
+        user = User.find_by!(id: session[:user_id])
+        user_makes = user.builds
+        render json: user_makes
     end
 
 private

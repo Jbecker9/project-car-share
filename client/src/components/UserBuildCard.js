@@ -4,20 +4,20 @@ import "../styles/UserBuildCard.css"
 import UpdateBuildForm from "./UpdateBuildForm";
 
 function UserBuildCard({makes, build }){
-    const { setUserState, userState } = useContext(UserContext)
+    const { setOpenGarageBuilds, userState } = useContext(UserContext)
     const [updateFormBuild, setUpdateFormBuild] = useState(false)
 
     function deleteBuild(){
         fetch(`/users/${userState.id}/builds/${build.id}`, {
             method: "DELETE"
         }).then((response)=>response.json())
-            .then((deletedBuildMakeData) => setUserState(deletedBuildMakeData))
-    // console.log(build)
+            .then((deletedBuildMakeData) => setOpenGarageBuilds(deletedBuildMakeData))
     }
-
 
     return(
         <div className="UserBuildCard-div" >
+            <img src={build.make.company_image} alt="vehicle comapny logo" className="UserBuildCard-companyLogos" />
+            <h1>{build.make.company_name}</h1>
             <h2> {build.year} {build.model} {build.spec} </h2>
             <h3>Budget: ${build.budget} </h3>
             <h3> {build.horsepower}hp {build.engine} </h3>

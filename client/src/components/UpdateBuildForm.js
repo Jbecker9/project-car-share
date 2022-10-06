@@ -3,8 +3,8 @@ import "../styles/updateBuildForm.css"
 import "../styles/CreateBuild.css"
 import { UserContext } from "../context/user";
 
-function UpdateBuildForm({ updateFormBuild, renderUpdateBuild, setUpdateFormBuild }){
-    const { setUserState, userState } = useContext(UserContext)
+function UpdateBuildForm({ updateFormBuild, setUpdateFormBuild }){
+    const { userState, setOpenGarageBuilds } = useContext(UserContext)
     const [updateBuildImage, setUpdateBuildImage] = useState(updateFormBuild.build_image)
     const [updateBuildModel, setUpdateBuildModel] = useState(updateFormBuild.model)
     const [updateBuildYear, setUpdateBuildYear] = useState(updateFormBuild.year)
@@ -32,7 +32,7 @@ function UpdateBuildForm({ updateFormBuild, renderUpdateBuild, setUpdateFormBuil
             body: JSON.stringify(updateBuildObj)
         }).then((response)=>response.json())
             .then((updatedUserData)=>{ 
-                setUserState(updatedUserData);
+                setOpenGarageBuilds(updatedUserData);
                 setUpdateFormBuild(false)
             })
     }

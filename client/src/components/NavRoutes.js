@@ -5,12 +5,12 @@ import Profile from "./Profile";
 import NavBar from "./NavBar";
 import CommunityBuilds from "./CommunityBuilds";
 
-function NavRoutes(){
+function NavRoutes({ userState, setUserState }){
 
     return(
         <div>
             <div>
-                <NavBar />
+                <NavBar userState={userState} setUserState={setUserState} />
             </div>
             <div className="UserFoundRoutes-routesDiv">
                 <Routes>

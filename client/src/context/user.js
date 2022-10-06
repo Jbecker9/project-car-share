@@ -6,6 +6,8 @@ function UserProvider({ children }){
     const [userState, setUserState] = useState(null)
     const [makeRef, setMakeRef] = useState(null)
     const [communityNavRef, setCommunityNavRef] = useState(null)
+    const [openGarageBuilds, setOpenGarageBuilds] = useState(null)  
+
 
     useEffect(()=>{
       fetch("/me")
@@ -16,10 +18,17 @@ function UserProvider({ children }){
           }
         })
     }, [])
-    console.log(userState)
+
+    function getUserBuildData(){
+      fetch(`/users/${userState.id}/builds`)
+      .then((r)=>r.json())
+      .then((userBuildData)=>{
+          setOpenGarageBuilds(userBuildData);
+      })
+    }
 
     return(
-        <UserContext.Provider value={{communityNavRef, setCommunityNavRef, makeRef, setMakeRef, userState, setUserState}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{ setOpenGarageBuilds, openGarageBuilds, getUserBuildData, communityNavRef, setCommunityNavRef, makeRef, setMakeRef, userState, setUserState}}>{children}</UserContext.Provider>
     )
 }
 

@@ -3,7 +3,7 @@ import { UserContext } from "../context/user";
 import "../styles/NewMakeForm.css"
 
 function NewMakeForm({ setNewBuildObject, setMakeFormClick }){
-    const { setUserState, userState } = useContext(UserContext)
+    const { setOpenGarageBuilds, userState } = useContext(UserContext)
     const [newMakeName, setNewMakeName] = useState(null)
     const [newMakeImage, setNewMakeImage] = useState(null)
     const [newBuildImage, setNewBuildImage] = useState("")
@@ -39,7 +39,7 @@ function NewMakeForm({ setNewBuildObject, setMakeFormClick }){
             body: JSON.stringify(newBuildNewMakeObject)
         }).then((response)=>response.json())
             .then((newMakeData)=>{ 
-                setUserState(newMakeData);
+                setOpenGarageBuilds(newMakeData);
                 setMakeFormClick(false);
                 setNewBuildObject(newBuildNewMakeObject);
             })

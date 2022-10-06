@@ -19,3 +19,11 @@
 .Home-h2{
     text-align: center;
 }
+
+.Home-openGarageButton{
+    display: block;
+    width: 95%;
+    height: 250px;
+    margin: 10px;
+    cursor: pointer;
+}

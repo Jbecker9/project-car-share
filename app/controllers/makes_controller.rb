@@ -6,14 +6,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: makes, include: ['builds', 'builds.user']
     end
 
-    def show
-        user = find_user
-        all_makes = Make.all
-        user_makes_id = user.makes.map { |make| make[:id] }
-        non_user_makes = all_makes.reject { |make| user_makes_id.include?(make[:id]) }
-        render json: non_user_makes
-    end
-
     def featured
         makes = Make.all
         make = makes.sample

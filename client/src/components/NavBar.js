@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/user";
 import "../styles/NavBar.css"
 
-function NavBar(){
-    const { setUserState, userState, setCommunityNavRef } = useContext(UserContext)
+function NavBar({ userState, setUserState }){
+    const { setCommunityNavRef } = useContext(UserContext)
 
     function handleLogOut(){
         fetch("/logout",{

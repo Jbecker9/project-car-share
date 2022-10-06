@@ -3,7 +3,7 @@ import { UserContext } from "../context/user";
 import "../styles/CreateBuild.css"
 
 function NonExistingMakeBuildForm({ setSelectMakeClick, setDisplayBuildFormClick, setNewBuildObject }){
-    const { setUserState, makeRef, userState } = useContext(UserContext)
+    const { setOpenGarageBuilds, makeRef, userState } = useContext(UserContext)
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
@@ -34,7 +34,7 @@ function NonExistingMakeBuildForm({ setSelectMakeClick, setDisplayBuildFormClick
         })
             .then((response) => response.json())
             .then((newBuildUserData) =>{ 
-                setUserState(newBuildUserData);
+                setOpenGarageBuilds(newBuildUserData);
                 setNewBuildObject(newBuildObj);
                 setDisplayBuildFormClick(false);
                 setSelectMakeClick(false);

@@ -37,3 +37,7 @@
     transition: 0.25s;
     cursor: pointer;
 }
+
+.UserBuildCard-companyLogos{
+    width: 25%;
+}

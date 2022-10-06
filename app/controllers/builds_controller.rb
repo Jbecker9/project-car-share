@@ -4,24 +4,33 @@ class BuildsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
+    def index
+        user = find_user
+        user_builds = user.builds
+        render json: user_builds
+    end
+    
     def create
         user = find_user
         new_make = user.builds.create!(build_params)
-        render json: user, status: :created
+        user_builds = user.builds
+        render json: user_builds, status: :created
     end
 
     def update
         user = find_user
         build = user.builds.find_by!(id: params[:id])
         build.update!(build_params)
-        render json: user, status: :accepted
+        user_builds = user.builds
+        render json: user_builds, status: :accepted
     end
 
     def destroy
         user = find_user
         build = user.builds.find_by!(id: params[:id])
         build.destroy
-        render json: user
+        builds = user.builds
+        render json: builds
     end
 
     def fastest
