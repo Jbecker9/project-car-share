@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by!(id: session[:user_id])
-        makes = Make.where(user_id: session[:user_id])
+        # user.makes.includes(:builds).where(build: {user_id: session[:user_id]})
         # byebug
         render json: user
     end
