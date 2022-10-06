@@ -6,7 +6,7 @@ class BuildsController < ApplicationController
 
     def create
         user = find_user
-        new_build = user.builds.create!(build_params)
+        new_make = user.builds.create!(build_params)
         render json: user, status: :created
     end
 

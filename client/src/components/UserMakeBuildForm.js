@@ -3,7 +3,7 @@ import { UserContext } from "../context/user";
 import "../styles/CreateBuild.css"
 
 function UserMakeBuildForm({ setCreateBuildFormClick, setNewBuildObject }){
-    const { setUserState, makeRef } = useContext(UserContext)
+    const { setUserState, makeRef, userState } = useContext(UserContext)
     const [newBuildImage, setNewBuildImage] = useState("")
     const [newModel, setNewModel] = useState("")
     const [newYear, setNewYear] = useState("")
@@ -24,7 +24,7 @@ function UserMakeBuildForm({ setCreateBuildFormClick, setNewBuildObject }){
             engine: newEngine,
             horsepower: newHorsePower
         }
-        fetch(`/makes/${makeRef.id}/builds`, {
+        fetch(`/users/${userState.id}/builds`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

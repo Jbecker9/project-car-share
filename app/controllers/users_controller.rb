@@ -11,9 +11,8 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by!(id: session[:user_id])
-        new_user = user.makes.each do |make|
-            make.builds.where(user_id: session[:user_id])
-        end
+        makes = Make.where(user_id: session[:user_id])
+        # byebug
         render json: user
     end
 
